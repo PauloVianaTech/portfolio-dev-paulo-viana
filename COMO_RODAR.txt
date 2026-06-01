@@ -1,0 +1,49 @@
+
+# COMO RODAR O PROJETO
+
+## 1. Instalar dependências
+
+Abra o terminal dentro da pasta do projeto:
+
+npm install
+
+---
+
+## 2. Configurar variáveis do Supabase
+
+Crie um arquivo:
+
+.env.local
+
+Adicione:
+
+NEXT_PUBLIC_SUPABASE_URL=sua_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sua_chave
+
+---
+
+## 3. Rodar o projeto
+
+npm run dev
+
+---
+
+## 4. Abrir no navegador
+
+http://localhost:3000
+
+---
+
+## 5. Arquivos mais importantes
+
+src/App.jsx
+src/pages/Home.jsx
+src/components/
+src/contexts/
+src/lib/
+
+
+
+
+
+

@@ -1,8 +1,32 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  darkMode: 'class',
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'moderniz': ['Moderniz', 'sans-serif'],
+        'bauhaus': ['Bauhaus93', 'sans-serif'],
+      },
+      animation: {
+        shadowFade: 'shadowFade 5s infinite ease-in-out',
+        gradient: 'gradient 8s linear infinite',
+      },
+      keyframes: {
+        shadowFade: {
+          '0%, 100%': { filter: 'drop-shadow(-1px 6px 3px rgba(0, 255, 255, 0.5))' },
+          '50%': { filter: 'drop-shadow(-1px 6px 3px rgba(0, 255, 255, 0.3))' },
+        },
+        gradient: {
+          '0%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0% 50%' },
+        },
+      },
+    },
   },
   plugins: [],
 }
