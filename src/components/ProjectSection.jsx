@@ -19,8 +19,12 @@ import { supabase } from '../lib/supabase';
 ////////////////////////////////////////
 // Projetos do portfólio
 ////////////////////////////////////////
-const dummyProjects = [
+const projectsData = [
+  // =====================
+  // DEVELOPMENT
+  // =====================
   {
+    category: "Development",
     title: "Drip Store",
     description: "E-commerce front-end desenvolvido  com foco em responsividade, experiência do usuário e interface moderna.",
     tech: ["React", "TailwindCSS", "JavaScript", "Next.js", "HTML5", "CSS3", "MongoDB", "Git & GitHub", "Vercel"], //, "Next.js", "HTML5", "CSS3", "MongoDB", "Git & GitHub", "Vercel"
@@ -54,10 +58,11 @@ const dummyProjects = [
       "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop"
     ],
-    category: "Development",
+
   },
 
   {
+    category: "Development",
     title: "Backend GT3",
     description: "Estrutura backend para aplicações web com organização de rotas, controllers e serviços.",
     tech: ["Node.js", "Express", "JavaScript"],
@@ -68,8 +73,79 @@ const dummyProjects = [
       "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop",
     ],
-    category: "Development",
+
   },
+
+
+
+
+
+  // =====================
+  // DESIGN
+  // =====================
+  {
+    category: "Design",
+    title: "Social Media Design",
+    description: "Projetos voltados para redes sociais, campanhas visuais e conteúdo digital.",
+    tech: ["Photoshop", "Illustrator"],
+    link: "#",
+    image: "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=2070&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop",
+    ],
+
+  },
+
+  {
+    category: "Design",
+    title: "Brand Identity V2",
+    description: "Criação de identidade visual, logos e materiais gráficos.",
+    tech: ["Illustrator", "Branding"],
+    link: "#",
+    image: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=2070&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop",
+    ],
+  },
+
+
+  // =====================
+  // TRADING AUTOMATION
+  // =====================
+  {
+    category: "Trading",
+    title: "MACD Pullback Strategy V2",
+    description: "Indicador para automação de operações baseado em pullback e confirmação de tendência.",
+    tech: ["Nelogica NTSL", "Profit Pro"],
+    link: "#",
+    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop",
+    ],
+  },
+
+  {
+    category: "Trading",
+    title: "Trading Automation V2",
+    description: "Projetos voltados para automação, alertas e estratégias para mercado financeiro.",
+    tech: ["MQL5", "MetaTrader 5"],
+    link: "#",
+    image: "https://images.unsplash.com/photo-1640161704729-cbe966a08476?q=80&w=2070&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1640161704729-cbe966a08476?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop",
+    ],
+  },
+
+
+
 ];
 
 ////////////////////////////////////////
@@ -127,9 +203,9 @@ const ProjectDetailModal = ({ project, onClose }) => {
       prev === 0 ? project.images.length - 1 : prev - 1
     );
   };
-////////////////////////////////////////
-// Ícones de tecnologia dentro modal de detalhes
-////////////////////////////////////////
+  ////////////////////////////////////////
+  // Ícones de tecnologia dentro modal de detalhes
+  ////////////////////////////////////////
   const techIcons = {
     "React": <FaReact className="text-cyan-400 text-base" />,
     "Next.js": <SiNextdotjs className="text-white text-base" />,
@@ -634,9 +710,9 @@ const ProjectDetailModal = ({ project, onClose }) => {
 ////////////////////////////////////////
 const ProjectCard = ({ project, onClick }) => {
 
-////////////////////////////////////////
-// Ícones de tecnologias no card inicial
-////////////////////////////////////////
+  ////////////////////////////////////////
+  // Ícones de tecnologias no card inicial
+  ////////////////////////////////////////
   const techIcons = {
     "React": <FaReact className="text-cyan-400 text-base" />,
     "Next.js": <SiNextdotjs className="text-white text-base" />,
@@ -717,9 +793,8 @@ const ProjectCard = ({ project, onClick }) => {
 ////////////////////////////////////////
 function ProjectSection() {
   const [activeTab, setActiveTab] = useState('Development');
-  const [projectCategory, setProjectCategory] = useState('Development');
   const [previewCertificate, setPreviewCertificate] = useState(null);
-  const [previewProject, setPreviewProject] = useState(null); // ✨ NEW STATE
+  const [previewProject, setPreviewProject] = useState(null);
   const { hideNavbar, showNavbar } = useNavbar();
 
   // === Database States ===
@@ -757,8 +832,8 @@ function ProjectSection() {
     fetchProjects();
   }, []);
 
-// Esconde a navbar quando o modal é aberto
-  useEffect(() => {    
+  // Esconde a navbar quando o modal é aberto
+  useEffect(() => {
     if (previewProject) {
       hideNavbar();
     } else {
@@ -782,10 +857,7 @@ function ProjectSection() {
   ];
 
   // Use database projects if available, fallback to dummy data
-  const activeProjects = projectsFromDB.length > 0 ? projectsFromDB : dummyProjects;
-
-  console.log('🎯 Active projects source:', projectsFromDB.length > 0 ? 'DATABASE' : 'FALLBACK');
-  console.log('📦 Total projects:', activeProjects.length);
+  const activeProjects = projectsFromDB.length > 0 ? projectsFromDB : projectsData;
 
   // Transform database projects to match UI format
   const transformedProjects = activeProjects.map(p => {
@@ -807,19 +879,15 @@ function ProjectSection() {
     return p;
   });
 
-  console.log('🔄 Transformed projects:', transformedProjects.length);
-
+  //obs 1: analisar essa parte do codigo
   // Filter projects by category (only applies to static dummy data)
   const filteredProjects = transformedProjects.filter((p) => {
     // If from database (has category 'Database'), show all
     if (p.category === 'Database') return true;
     // For dummy data, filter by selected category
-    return p.category === projectCategory;
+    return p.category === activeTab;
   });
 
-  console.log('✨ Filtered projects to display:', filteredProjects.length);
-
-  // === CHANGE END ===
 
   return (
     <section id="project" className="py-20">
@@ -918,112 +986,34 @@ function ProjectSection() {
               transition={{ duration: 0.3 }}
               className="p-6 md:p-10"
             >
-              {activeTab === 'Development' && (
-                <>
 
-                  {loadingProjects ? (
-                    <div className="flex justify-center py-12">
-                      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-cyan-400"></div>
-                    </div>
-                  ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                      {filteredProjects.length > 0 ? (
-                        filteredProjects.map((p, i) => (
-                          <ProjectCard
-                            key={p.id || i}
-                            project={p}
-                            onClick={setPreviewProject}
-                          />
-                        ))
-                      ) : (
-                        <div className="col-span-full text-center text-slate-400 py-12">
-                          No projects available yet.
-                          {projectsFromDB.length === 0 && (
-                            <div className="mt-4 text-sm text-cyan-400">
-                              Add projects via Admin Dashboard to see them here!
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </>
-              )}
-              {activeTab === 'Design' && (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <>
+                {loadingProjects ? (
+                  <div className="flex justify-center py-12">
+                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-cyan-400"></div>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                  <ProjectCard
-                    project={{
-                      title: "Social Media Design",
-                      description: "Projetos voltados para redes sociais, campanhas visuais e conteúdo digital.",
-                      tech: ["Photoshop", "Illustrator"],
-                      link: "#",
-                      image: "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=2070&auto=format&fit=crop",
-                      images: [
-                        "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=2070&auto=format&fit=crop",
-                        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop",
-                        "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop",
-                      ],
-                    }}
-                    onClick={setPreviewProject}
-                  />
+                    {filteredProjects.length > 0 ? (
+                      filteredProjects.map((p, i) => (
+                        <ProjectCard
+                          key={p.id || i}
+                          project={p}
+                          onClick={setPreviewProject}
+                        />
+                      ))
+                    ) : (
+                      <div className="col-span-full text-center text-slate-400 py-12">
+                        Nenhum projeto encontrado.
+                      </div>
+                    )}
 
-                  <ProjectCard
-                    project={{
-                      title: "Brand Identity",
-                      description: "Criação de identidade visual, logos e materiais gráficos.",
-                      tech: ["Illustrator", "Branding"],
-                      link: "#",
-                      image: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=2070&auto=format&fit=crop",
-                      images: [
-                        "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=2070&auto=format&fit=crop",
-                        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop",
-                        "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop",
-                      ],
-                    }}
-                    onClick={setPreviewProject}
-                  />
+                  </div>
+                )}
+              </>
 
-                </div>
-              )}
 
-              {activeTab === 'Trading' && (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                  <ProjectCard
-                    project={{
-                      title: "MACD Pullback Strategy",
-                      description: "Indicador para automação de operações baseado em pullback e confirmação de tendência.",
-                      tech: ["Nelogica NTSL", "Profit Pro"],
-                      link: "#",
-                      image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop",
-                      images: [
-                        "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop",
-                        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop",
-                        "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop",
-                      ],
-                    }}
-                    onClick={setPreviewProject}
-                  />
-
-                  <ProjectCard
-                    project={{
-                      title: "Trading Automation",
-                      description: "Projetos voltados para automação, alertas e estratégias para mercado financeiro.",
-                      tech: ["MQL5", "MetaTrader 5"],
-                      link: "#",
-                      image: "https://images.unsplash.com/photo-1640161704729-cbe966a08476?q=80&w=2070&auto=format&fit=crop",
-                      images: [
-                        "https://images.unsplash.com/photo-1640161704729-cbe966a08476?q=80&w=2070&auto=format&fit=crop",
-                        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop",
-                        "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop",
-                      ],
-                    }}
-                    onClick={setPreviewProject}
-                  />
-
-                </div>
-              )}
             </motion.div>
           </AnimatePresence>
         </div>
