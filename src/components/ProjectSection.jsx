@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   FaExternalLinkAlt, FaReact, FaNodeJs, FaHtml5, FaCss3Alt,
   FaJsSquare, FaTools, FaFigma, FaGithub, FaTimes, FaChevronLeft, FaChevronRight,
+  FaPlay, FaFileAlt, FaChartLine, FaBookOpen, FaDownload,
 } from 'react-icons/fa';
 import {
   SiTailwindcss, SiNextdotjs, SiVercel, SiMongodb,
@@ -17,7 +18,7 @@ import { supabase } from '../lib/supabase';
 
 
 ////////////////////////////////////////
-// Projetos do portfólio
+// PROJECTS DATA
 ////////////////////////////////////////
 const projectsData = [
   // =====================
@@ -30,20 +31,18 @@ const projectsData = [
     tech: ["React", "TailwindCSS", "JavaScript", "Next.js", "HTML5", "CSS3", "MongoDB", "Git & GitHub", "Vercel"], //, "Next.js", "HTML5", "CSS3", "MongoDB", "Git & GitHub", "Vercel"
     buttons: [
       {
-        type: "demo",
+        type: "primary",
+        icon: "demo",
         label: "Live Demo",
         link: "https://github.com/PauloVianaTech/drip-store",
       },
-
       {
-        type: "github",
+        type: "secondary",
+        icon: "github",
         label: "Source Code",
         link: "https://github.com/PauloVianaTech/drip-store",
-      },
+      },      
     ],
-
-    button2Link: "https://github.com/PauloVianaTech/drip-store",
-    button2Type: "github",
     image: "https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=2070&auto=format&fit=crop",
     images: [
       "https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=2070&auto=format&fit=crop",
@@ -66,6 +65,21 @@ const projectsData = [
     title: "Backend GT3",
     description: "Estrutura backend para aplicações web com organização de rotas, controllers e serviços.",
     tech: ["Node.js", "Express", "JavaScript"],
+    buttons: [
+      {
+        type: "primary",
+        icon: "demo",
+        label: "Live Demo",
+        link: "https://github.com/PauloVianaTech/drip-store",
+      },
+
+      {
+        type: "secondary",
+        icon: "github",
+        label: "Source Code",
+        link: "https://github.com/PauloVianaTech/drip-store",
+      },
+    ],
     link: "https://github.com/PauloVianaTech/projeto-backend-gt3",
     image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=2070&auto=format&fit=crop",
     images: [
@@ -75,9 +89,6 @@ const projectsData = [
     ],
 
   },
-
-
-
 
 
   // =====================
@@ -149,7 +160,185 @@ const projectsData = [
 ];
 
 ////////////////////////////////////////
-// Componentes auxiliares de animação
+// BUTTON CONFIGS
+////////////////////////////////////////
+
+const buttonIcons = {
+
+  demo: (
+    <FaExternalLinkAlt className="
+      text-xl md:text-2xl
+      drop-shadow-[0_0_10px_rgba(255,255,255,0.45)]
+      shrink-0
+    " />
+  ),
+
+  github: (
+    <FaGithub className="
+      text-2xl md:text-2xl
+      text-cyan-100
+      drop-shadow-[0_0_12px_rgba(34,211,238,0.7)]
+      shrink-0
+    " />
+  ),
+
+  figma: (
+    <FaFigma className="
+      text-xl md:text-2xl
+      text-pink-200
+      drop-shadow-[0_0_12px_rgba(236,72,153,0.7)]
+      shrink-0
+    " />
+  ),
+
+  video: (
+    <FaPlay className="
+      text-lg md:text-xl
+      text-red-200
+      drop-shadow-[0_0_12px_rgba(239,68,68,0.7)]
+      shrink-0
+    " />
+  ),
+
+  docs: (
+    <FaFileAlt className="
+      text-lg md:text-xl
+      text-emerald-200
+      drop-shadow-[0_0_12px_rgba(16,185,129,0.7)]
+      shrink-0
+    " />
+  ),
+
+  strategy: (
+    <FaChartLine className="
+      text-lg md:text-xl
+      text-orange-200
+      drop-shadow-[0_0_12px_rgba(251,146,60,0.7)]
+      shrink-0
+    " />
+  ),
+
+  article: (
+    <FaBookOpen className="
+      text-lg md:text-xl
+      text-violet-200
+      drop-shadow-[0_0_12px_rgba(139,92,246,0.7)]
+      shrink-0
+    " />
+  ),
+
+  download: (
+    <FaDownload className="
+      text-lg md:text-xl
+      text-cyan-100
+      drop-shadow-[0_0_12px_rgba(34,211,238,0.7)]
+      shrink-0
+    " />
+  ),
+
+};
+
+const buttonStyles = {
+
+  primary: `
+    relative overflow-hidden
+
+    flex items-center justify-center
+    gap-3
+
+    px-6 py-4
+    rounded-2xl
+
+    font-bold
+    text-white
+    text-lg md:text-xl
+
+    whitespace-nowrap
+
+    bg-gradient-to-r
+    from-cyan-400
+    via-blue-500
+    to-emerald-400
+
+    bg-[length:250%_250%]
+    animate-primaryFlow
+
+    shadow-[0_0_25px_rgba(34,211,238,0.30)]
+
+    hover:shadow-[0_0_40px_rgba(34,211,238,0.50)]
+
+    transition-all duration-500
+
+    hover:scale-[1.03]
+    active:scale-[0.98]
+
+    before:absolute
+    before:inset-0
+    before:bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.22),transparent)]
+    before:translate-x-[-120%]
+
+    hover:before:translate-x-[120%]
+
+    before:transition-transform
+    before:duration-1000
+  `,
+
+  secondary: `
+    relative overflow-hidden
+
+    flex items-center justify-center
+    gap-2 md:gap-3
+
+    px-5 md:px-6
+    py-4
+
+    rounded-2xl
+
+    font-bold
+    text-white
+    text-lg md:text-xl
+
+    whitespace-nowrap
+
+    border border-white/20
+
+    bg-gradient-to-br
+    from-white/10
+    via-cyan-400/15
+    to-blue-500/15
+
+    backdrop-blur-xl
+
+    bg-[length:250%_250%]
+    animate-holographic
+
+    shadow-[0_0_25px_rgba(34,211,238,0.18)]
+
+    hover:shadow-[0_0_35px_rgba(34,211,238,0.28)]
+
+    hover:border-cyan-300/40
+
+    transition-all duration-500
+
+    hover:scale-[1.03]
+    active:scale-[0.98]
+
+    before:absolute
+    before:inset-0
+    before:bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.14),transparent)]
+
+    before:translate-x-[-120%]
+
+    hover:before:translate-x-[120%]
+
+    before:transition-transform
+    before:duration-1000
+  `,
+
+};
+
+////////////////////////////////////////
+// HELPERS COMPONENTS ANIMATIONS
 ////////////////////////////////////////
 const LineShadowText = ({
   children,
@@ -432,78 +621,50 @@ const ProjectDetailModal = ({ project, onClose }) => {
             <div className="flex-1"></div>
 
             {/* Botões */}
-            <div className="flex flex-wrap gap-3 mt-auto pt-4 border-t border-white/10">
+            <div
+              className={`
+    mt-auto pt-4 border-t border-white/10
+    grid gap-3
 
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="
-                relative overflow-hidden
-                flex-1 flex items-center justify-center gap-3
-                px-6 py-4 rounded-2xl
-                font-bold text-white text-lg md:text-x1
-                whitespace-nowrap
-                bg-gradient-to-r
-                from-cyan-400
-                via-blue-500
-                to-emerald-400
-                bg-[length:250%_250%]
-                animate-primaryFlow
-                shadow-[0_0_25px_rgba(34,211,238,0.30)]
-                hover:shadow-[0_0_40px_rgba(34,211,238,0.50)]
-                transition-all duration-500
-                hover:scale-[1.03]
-                active:scale-[0.98]
-                before:absolute
-                before:inset-0
-                before:bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.22),transparent)]
-                before:translate-x-[-120%]
-                hover:before:translate-x-[120%]
-                before:transition-transform
-                before:duration-1000              
-                "
-              >
-                <FaExternalLinkAlt className="text-xl md:text-2xl drop-shadow-[0_0_10px_rgba(255,255,255,0.45)] shrink-0" />
-                Live Demo
-              </a>
+    ${project.buttons?.length === 1
+                  ? "grid-cols-1"
+                  : "grid-cols-2"
+                }
+  `}
+            >
 
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="
-                relative overflow-hidden
-                flex-1 flex items-center justify-center gap-2 md:gap-3
-                px-5 md:px-6 py-4 rounded-2xl
-                font-bold text-white text-lg md:text-x1
-                whitespace-nowrap
-                border border-white/20
-                bg-gradient-to-br
-                from-white/10
-                via-cyan-400/15
-                to-blue-500/15
-                backdrop-blur-xl
-                bg-[length:250%_250%]
-                animate-holographic
-                shadow-[0_0_25px_rgba(34,211,238,0.18)]
-                hover:shadow-[0_0_35px_rgba(34,211,238,0.28)]
-                hover:border-cyan-300/40
-                transition-all duration-500
-                hover:scale-[1.03]
-                active:scale-[0.98]
-                before:absolute
-                before:inset-0
-                before:bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.14),transparent)]
-                before:translate-x-[-120%]
-                hover:before:translate-x-[120%]
-                before:transition-transform
-                before:duration-1000              
-                "
-              >
-                <FaGithub className="text-2xl md:text-2xl text-cyan-100 drop-shadow-[0_0_12px_rgba(34,211,238,0.7)] shrink-0" />
-                Source Code
-              </a>
+              {project.buttons?.map((button, index) => (
+
+                <a
+                  key={index}
+                  href={button.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+
+                  className={`
+        ${buttonStyles[button.type] || buttonStyles.secondary}
+
+        ${project.buttons.length === 1
+                      ? "col-span-1"
+                      : ""
+                    }
+
+        ${project.buttons.length === 3 && index === 0
+                      ? "col-span-2"
+                      : ""
+                    }
+      `}
+                >
+
+                  {buttonIcons[button.icon]}
+
+                  <span>
+                    {button.label}
+                  </span>
+
+                </a>
+
+              ))}
 
             </div>
 
@@ -793,7 +954,6 @@ const ProjectCard = ({ project, onClick }) => {
 ////////////////////////////////////////
 function ProjectSection() {
   const [activeTab, setActiveTab] = useState('Development');
-  const [previewCertificate, setPreviewCertificate] = useState(null);
   const [previewProject, setPreviewProject] = useState(null);
   const { hideNavbar, showNavbar } = useNavbar();
 
