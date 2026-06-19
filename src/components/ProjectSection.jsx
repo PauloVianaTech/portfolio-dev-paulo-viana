@@ -4,8 +4,17 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   FaExternalLinkAlt, FaReact, FaNodeJs, FaHtml5, FaCss3Alt,
   FaJsSquare, FaTools, FaFigma, FaGithub, FaTimes, FaChevronLeft, FaChevronRight,
-  FaPlay, FaFileAlt, FaChartLine, FaBookOpen, FaDownload,
-} from 'react-icons/fa';
+  FaPlay, FaFileAlt, FaChartLine, FaBookOpen, FaDownload,FaWindowMaximize, FaVideo, FaPencilRuler,
+} from "react-icons/fa";
+import {
+  FaCartShopping,
+  FaChartPie,
+  FaUser,
+  FaPalette,
+  FaInstagram,
+  FaRobot,
+  
+} from "react-icons/fa6";
 import {
   SiTailwindcss, SiNextdotjs, SiVercel, SiMongodb,
   SiExpress, SiPostgresql
@@ -25,24 +34,56 @@ const projectsData = [
   // DEVELOPMENT
   // =====================
   {
-    category: "Development",
+    // =========================
+    // IDENTIDADE
+    // =========================
+    id: "drip-store",
     title: "Drip Store",
-    description: "E-commerce front-end desenvolvido  com foco em responsividade, experiência do usuário e interface moderna.",
-    tech: ["React", "TailwindCSS", "JavaScript", "Next.js", "HTML5", "CSS3", "MongoDB", "Git & GitHub", "Vercel"], //, "Next.js", "HTML5", "CSS3", "MongoDB", "Git & GitHub", "Vercel"
-    buttons: [
-      {
-        type: "primary",
-        icon: "demo",
-        label: "Live Demo",
-        link: "https://github.com/PauloVianaTech/drip-store",
-      },
-      {
-        type: "secondary",
-        icon: "github",
-        label: "Source Code",
-        link: "https://github.com/PauloVianaTech/drip-store",
-      },      
+    category: "Development",    // "Development", "Design", "Trading"
+    type: "E-commerce",   //"E-commerce", "Brand Identity"", "Landing Page", "Dashboard", "Social Media", 
+    // "Automation", "Trading Indicator", "Portfolio", "CRM", "Motion Design", "UI Design", "Mobile App", "Data Visualization",    
+
+    // =========================
+    // ORGANIZAÇÃO
+    // =========================
+    featured: true,     // true = projeto de destaque | false = projeto secundário
+    date: "03-2026",    // "06-2026", "12-2025", "03-2024"
+    status: "Completed",  // Completed, In Progress, MVP, Private Project, Archived
+
+    // =========================
+    // CONTEÚDO
+    // =========================
+    description:    // Descrição principal do projeto
+      "E-commerce front-end desenvolvido  com foco em responsividade, experiência do usuário e interface moderna.",
+
+    // =========================
+    // STACK / FILTROS
+    // =========================
+    // Tecnologias, ferramentas e softwares utilizados
+    //"HTML5", "CSS3", "JavaScript", "React", "TailwindCSS", "Next.js", "MongoDB", "Git & GitHub", "Vercel",
+    tech: [
+      "React",
+      "TailwindCSS",
+      "JavaScript",
+      "Next.js",
+      "HTML5",
+      "CSS3",
+      "MongoDB",
+      "Git & GitHub",
+      "Vercel"
+    ], //, "Next.js", "HTML5", "CSS3", "MongoDB", "Git & GitHub", "Vercel"
+    tags: [
+      "Frontend",
+      "Responsive",
+      "UI/UX",
+      "E-commerce"
     ],
+
+    // AUTORIA / CONTEXTO    
+    role: "Frontend Developer",
+    company: "Projeto Acadêmico",
+
+    // MÍDIAS
     image: "https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=2070&auto=format&fit=crop",
     images: [
       "https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=2070&auto=format&fit=crop",
@@ -56,9 +97,28 @@ const projectsData = [
       "https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=2070&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop"
+      // "/projects/drip-store/home.webp",
+      // "/projects/drip-store/product.webp",
+    ],
+
+    // LINKS / AÇÕES
+    buttons: [
+      {
+        type: "primary",
+        icon: "demo",
+        label: "Live Demo",
+        link: "https://github.com/PauloVianaTech/drip-store",
+      },
+      {
+        type: "secondary",
+        icon: "github",
+        label: "Source Code",
+        link: "https://github.com/PauloVianaTech/drip-store",
+      },
     ],
 
   },
+
 
   {
     category: "Development",
@@ -396,12 +456,12 @@ const ProjectDetailModal = ({ project, onClose }) => {
   // Ícones de tecnologia dentro modal de detalhes
   ////////////////////////////////////////
   const techIcons = {
-    "React": <FaReact className="text-cyan-400 text-base" />,
-    "Next.js": <SiNextdotjs className="text-white text-base" />,
-    "JavaScript": <FaJsSquare className="text-yellow-400 text-base" />,
-    "TailwindCSS": <SiTailwindcss className="text-cyan-300 text-base" />,
     "HTML5": <FaHtml5 className="text-orange-500 text-base" />,
     "CSS3": <FaCss3Alt className="text-blue-500 text-base" />,
+    "JavaScript": <FaJsSquare className="text-yellow-400 text-base" />,
+    "React": <FaReact className="text-cyan-400 text-base" />,
+    "Next.js": <SiNextdotjs className="text-white text-base" />,
+    "TailwindCSS": <SiTailwindcss className="text-cyan-300 text-base" />,
     "Node.js": <FaNodeJs className="text-green-500 text-base" />,
     "Express": <SiExpress className="text-gray-300 text-base" />,
     "MongoDB": <SiMongodb className="text-green-400 text-base" />,
@@ -409,6 +469,7 @@ const ProjectDetailModal = ({ project, onClose }) => {
     "Git & GitHub": <FaGithub className="text-white text-base" />,
     "Vercel": <SiVercel className="text-white text-base" />,
     "Figma": <FaFigma className="text-pink-400 text-base" />,
+    "Python": <FaFigma className="text-pink-400 text-base" />,
 
     "Photoshop": <span className="text-blue-400 text-sm font-bold">Ps</span>,
     "Illustrator": <span className="text-orange-400 text-sm font-bold">Ai</span>,
@@ -874,6 +935,51 @@ const ProjectCard = ({ project, onClick }) => {
   ////////////////////////////////////////
   // Ícones de tecnologias no card inicial
   ////////////////////////////////////////
+  const typeIcons = {
+
+    "E-commerce": <FaCartShopping />,
+
+    "Landing Page": <FaWindowMaximize />,
+
+    "Dashboard": <FaChartPie />,
+
+    "Portfolio": <FaUser />,
+
+    "Identidade Visual": <FaPalette />,
+
+    "Motion Design": <FaVideo/>,
+
+    "Social Media": <FaInstagram />,
+
+    "UI/UX": <FaPencilRuler />,
+
+    "Trading Indicator": <FaChartLine />,
+
+    "Trading Automation": <FaRobot />,
+  };
+
+  const typeStyles = {
+
+    Development: `
+    border-cyan-400/20
+    bg-cyan-400/10
+    text-cyan-200
+  `,
+
+    Design: `
+    border-pink-400/20
+    bg-pink-400/10
+    text-pink-200
+  `,
+
+    Trading: `
+    border-emerald-400/20
+    bg-emerald-400/10
+    text-emerald-200
+  `,
+
+  };
+
   const techIcons = {
     "React": <FaReact className="text-cyan-400 text-base" />,
     "Next.js": <SiNextdotjs className="text-white text-base" />,
@@ -915,6 +1021,35 @@ const ProjectCard = ({ project, onClick }) => {
       <div className="absolute inset-0 flex flex-col justify-between p-6 bg-gradient-to-t from-black/70 via-black/20 to-transparent">
         <div className="translate-y-0 group-hover:-translate-y-1 transition-all duration-500 bg-black/25 backdrop-blur-[2px] rounded-2xl p-2 -m-3">
           <div className="flex justify-between items-start">
+            {/* TYPE BADGE */}
+
+            {project.type && (
+
+              <div
+                className={`
+      inline-flex items-center gap-2
+      w-fit
+      px-3 py-1 mb-3
+      rounded-full
+      text-xs font-semibold
+      border
+      backdrop-blur-md
+
+      ${typeStyles[project.category]}
+    `}
+              >
+
+                <span className="text-sm">
+                  {typeIcons[project.type]}
+                </span>
+
+                <span>
+                  {project.type}
+                </span>
+
+              </div>
+
+            )}
             <h3 className="text-2xl font-black tracking-tight text-white transition-all duration-500 dark:group-hover:text-cyan-300 group-hover:text-cyan-300 group-hover:drop-shadow-[0_0_12px_rgba(34,211,238,0.45)]">{project.title}</h3>
             <div className="bg-white/10 backdrop-blur-md p-2 rounded-full opacity-0 scale-75 rotate-[-10deg] group-hover:opacity-100 group-hover:scale-100 group-hover:rotate-0 transition-all duration-500 ease-out">
               <FaExternalLinkAlt className="text-white" />
@@ -953,7 +1088,16 @@ const ProjectCard = ({ project, onClick }) => {
 // Sessão de projetos
 ////////////////////////////////////////
 function ProjectSection() {
-  const [activeTab, setActiveTab] = useState('Development');
+  const getInitialTab = () => {
+    const hash = window.location.hash
+      .replace("#", "")
+      .toLowerCase();
+    if (hash === "design") return "Design";
+    if (hash === "trading") return "Trading";
+    return "Development";
+  };
+
+  const [activeTab, setActiveTab] = useState(getInitialTab);
   const [previewProject, setPreviewProject] = useState(null);
   const { hideNavbar, showNavbar } = useNavbar();
 
@@ -1006,6 +1150,27 @@ function ProjectSection() {
       showNavbar();
     };
   }, [showNavbar]);
+
+  // Faz com que quando eu abra o modal na versão mobile e toque ou arraste para voltar,
+  //   ele apenas feche o modal ao invés de voltar para a pag antes do portfólio
+  useEffect(() => {
+
+    const handlePopState = () => {
+
+      if (previewProject) {
+        setPreviewProject(null);
+      }
+
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+
+  }, [previewProject]);
+
 
   const tabs = [
 
@@ -1092,10 +1257,33 @@ function ProjectSection() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="text-center mb-20"
       >
-        <h2 className="text-4xl font-bold font-moderniz">
-          <span className="dark:text-[#00ffdc] text-cyan-600"><LineShadowText shadowColor="#00b3a4">PORTFOLIO</LineShadowText></span>
-          {' '}
-          <span className="dark:text-white text-slate-800"><LineShadowText shadowColor="#bbbbbb">SHOWCASE</LineShadowText></span>
+        <h2 className="font-bold font-moderniz leading-none">
+
+          <span className="
+            block
+            text-xl md:text-2xl
+            tracking-[0.25em]
+            uppercase
+            dark:text-[#00ffdc]
+            text-cyan-600
+          ">
+            <LineShadowText shadowColor="#00b3a4">
+              PORTFOLIO
+            </LineShadowText>
+          </span>
+
+          <span className="
+            block
+            mt-1
+            text-4xl md:text-6xl
+            dark:text-white
+            text-slate-800
+          ">
+            <LineShadowText shadowColor="#bbbbbb">
+              Selected Work
+            </LineShadowText>
+          </span>
+
         </h2>
       </motion.div>
 
@@ -1107,9 +1295,12 @@ function ProjectSection() {
             style={{ boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.18)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }}
           >
             {tabs.map((tab) => (
-              <motion.button
+              <motion.a
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
+                href={`#${tab.id.toLowerCase()}`}
+                onClick={() => {
+                  setActiveTab(tab.id);
+                }}
                 className={`relative flex flex-1 flex-col items-center justify-center px-2 py-7 rounded-2xl font-semibold text-base transition-colors duration-300 outline-none ${activeTab === tab.id ? "dark:text-white text-slate-900" : "text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-300"}`}
                 whileTap={{ scale: 0.97 }}
                 whileHover={{ scale: 1.03 }}
@@ -1128,7 +1319,7 @@ function ProjectSection() {
                   {tab.icon}
                   <span className="font-bold">{tab.label}</span>
                 </span>
-              </motion.button>
+              </motion.a>
             ))}
           </motion.div>
         </div>
@@ -1160,7 +1351,13 @@ function ProjectSection() {
                         <ProjectCard
                           key={p.id || i}
                           project={p}
-                          onClick={setPreviewProject}
+                          onClick={(project) => {
+                            window.history.pushState(
+                              { modal: true },
+                              ""
+                            );
+                            setPreviewProject(project);
+                          }}
                         />
                       ))
                     ) : (
