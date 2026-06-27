@@ -4,16 +4,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   FaExternalLinkAlt, FaReact, FaNodeJs, FaHtml5, FaCss3Alt,
   FaJsSquare, FaTools, FaFigma, FaGithub, FaTimes, FaChevronLeft, FaChevronRight,
-  FaPlay, FaFileAlt, FaChartLine, FaBookOpen, FaDownload,FaWindowMaximize, FaVideo, FaPencilRuler,
+  FaPlay, FaFileAlt, FaChartLine, FaBookOpen, FaDownload, FaWindowMaximize, FaVideo, FaPencilRuler,
 } from "react-icons/fa";
 import {
-  FaCartShopping,
-  FaChartPie,
-  FaUser,
-  FaPalette,
-  FaInstagram,
-  FaRobot,
-  
+  FaCartShopping, FaChartPie, FaUser, FaPalette, FaInstagram, FaRobot,
 } from "react-icons/fa6";
 import {
   SiTailwindcss, SiNextdotjs, SiVercel, SiMongodb,
@@ -24,7 +18,6 @@ import { LuBadge } from "react-icons/lu";
 import { LiaLayerGroupSolid } from "react-icons/lia";
 import { useNavbar } from '../contexts/NavbarContext';
 import { supabase } from '../lib/supabase';
-
 
 ////////////////////////////////////////
 // PROJECTS DATA
@@ -40,8 +33,6 @@ const projectsData = [
     id: "drip-store",
     title: "Drip Store",
     category: "Development",    // "Development", "Design", "Trading"
-    type: "E-commerce",   //"E-commerce", "Brand Identity"", "Landing Page", "Dashboard", "Social Media", 
-    // "Automation", "Trading Indicator", "Portfolio", "CRM", "Motion Design", "UI Design", "Mobile App", "Data Visualization",    
 
     // =========================
     // ORGANIZAÇÃO
@@ -49,12 +40,12 @@ const projectsData = [
     featured: true,     // true = projeto de destaque | false = projeto secundário
     date: "03-2026",    // "06-2026", "12-2025", "03-2024"
     status: "Completed",  // Completed, In Progress, MVP, Private Project, Archived
-
-    // =========================
     // CONTEÚDO
-    // =========================
     description:    // Descrição principal do projeto
       "E-commerce front-end desenvolvido  com foco em responsividade, experiência do usuário e interface moderna.",
+    types: ["E-commerce", "Frontend", "UI/UX"], //"Frontend", "Backend", "Full Stack", "E-commerce", "Brand Identity"", "Landing Page", "Dashboard", "Social Media", 
+    // "Automation", "Trading Indicator", "Portfolio", "CRM", "Motion Design", "UI Design", "Mobile App", "Data Visualization",    
+    context: "Study project", // "Study Project", "Client Project", "Personal Project", "Open Source", "Concept"    
 
     // =========================
     // STACK / FILTROS
@@ -62,15 +53,7 @@ const projectsData = [
     // Tecnologias, ferramentas e softwares utilizados
     //"HTML5", "CSS3", "JavaScript", "React", "TailwindCSS", "Next.js", "MongoDB", "Git & GitHub", "Vercel",
     tech: [
-      "React",
-      "TailwindCSS",
-      "JavaScript",
-      "Next.js",
-      "HTML5",
-      "CSS3",
-      "MongoDB",
-      "Git & GitHub",
-      "Vercel"
+      "React", "TailwindCSS", "JavaScript", "Next.js", "HTML5", "CSS3", "CSS3", "MongoDB", "Git & GitHub", "Vercel", "Next.js", "HTML5", "CSS3", "MongoDB", "Git & GitHub", "Vercel"
     ], //, "Next.js", "HTML5", "CSS3", "MongoDB", "Git & GitHub", "Vercel"
     tags: [
       "Frontend",
@@ -100,7 +83,6 @@ const projectsData = [
       // "/projects/drip-store/home.webp",
       // "/projects/drip-store/product.webp",
     ],
-
     // LINKS / AÇÕES
     buttons: [
       {
@@ -116,7 +98,6 @@ const projectsData = [
         link: "https://github.com/PauloVianaTech/drip-store",
       },
     ],
-
   },
 
 
@@ -124,7 +105,9 @@ const projectsData = [
     category: "Development",
     title: "Backend GT3",
     description: "Estrutura backend para aplicações web com organização de rotas, controllers e serviços.",
-    tech: ["Node.js", "Express", "JavaScript"],
+    types: ["Backend",],
+    context: "Study project",
+    tech: ["Node.js", "Express"],
     buttons: [
       {
         type: "primary",
@@ -158,6 +141,8 @@ const projectsData = [
     category: "Design",
     title: "Social Media Design",
     description: "Projetos voltados para redes sociais, campanhas visuais e conteúdo digital.",
+    types: ["Backend",],
+    context: "Study project",
     tech: ["Photoshop", "Illustrator"],
     link: "#",
     image: "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=2070&auto=format&fit=crop",
@@ -171,18 +156,33 @@ const projectsData = [
 
   {
     category: "Design",
+    id: "brand-id-v2",
     title: "Brand Identity V2",
+    types: ["Backend"],
+    context: "Study project",
+    featured: false,
+    date: "03-2026",
+    status: "Complete",
     description: "Criação de identidade visual, logos e materiais gráficos.",
     tech: ["Illustrator", "Branding"],
-    link: "#",
+    tags: ["Backend", "API", "Node.js"],
+    role: "",
+    company: "",
     image: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=2070&auto=format&fit=crop",
     images: [
       "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=2070&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop",
     ],
+    buttons: [
+      {
+        type: "secondary",
+        icon: "github",
+        label: "Source Code",
+        link: "https://github.com/PauloVianaTech/projeto-backend-gt3",
+      },
+    ],
   },
-
 
   // =====================
   // TRADING AUTOMATION
@@ -191,6 +191,8 @@ const projectsData = [
     category: "Trading",
     title: "MACD Pullback Strategy V2",
     description: "Indicador para automação de operações baseado em pullback e confirmação de tendência.",
+    types: ["Backend",],
+    context: "Study project",
     tech: ["Nelogica NTSL", "Profit Pro"],
     link: "#",
     image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop",
@@ -205,6 +207,8 @@ const projectsData = [
     category: "Trading",
     title: "Trading Automation V2",
     description: "Projetos voltados para automação, alertas e estratégias para mercado financeiro.",
+    types: ["Backend",],
+    context: "Study project",
     tech: ["MQL5", "MetaTrader 5"],
     link: "#",
     image: "https://images.unsplash.com/photo-1640161704729-cbe966a08476?q=80&w=2070&auto=format&fit=crop",
@@ -215,14 +219,211 @@ const projectsData = [
     ],
   },
 
-
-
 ];
+
+////////////////////////////////////////
+// Ícones de tecnologia dentro modal de detalhes
+////////////////////////////////////////
+const techIcons = {
+  "HTML5": <FaHtml5 className="text-orange-500 text-base" />,
+  "CSS3": <FaCss3Alt className="text-blue-500 text-base" />,
+  "JavaScript": <FaJsSquare className="text-yellow-400 text-base" />,
+  "React": <FaReact className="text-cyan-400 text-base" />,
+  "Next.js": <SiNextdotjs className="text-white text-base" />,
+  "TailwindCSS": <SiTailwindcss className="text-cyan-300 text-base" />,
+  "Node.js": <FaNodeJs className="text-green-500 text-base" />,
+  "Express": <SiExpress className="text-gray-300 text-base" />,
+  "MongoDB": <SiMongodb className="text-green-400 text-base" />,
+  "PostgreSQL": <SiPostgresql className="text-sky-400 text-base" />,
+  "Git & GitHub": <FaGithub className="text-white text-base" />,
+  "Vercel": <SiVercel className="text-white text-base" />,
+  "Figma": <FaFigma className="text-pink-400 text-base" />,
+  "Python": <FaFigma className="text-pink-400 text-base" />,
+
+  "Photoshop": <span className="text-blue-400 text-sm font-bold">Ps</span>,
+  "Illustrator": <span className="text-orange-400 text-sm font-bold">Ai</span>,
+  "Branding": <span className="text-violet-400 text-sm font-bold">Br</span>,
+
+  "Nelogica NTSL": <span className="text-emerald-400 font-bold tracking-wide">Nelogica NTSL</span>,
+  "Profit Pro": <span className="text-green-300 font-bold tracking-wide">Profit Pro</span>,
+  "MQL5": <span className="text-blue-400 text-sm font-bold">MQL5</span>,
+  "MetaTrader 5": <span className="text-cyan-300 text-sm font-bold">MT5</span>,
+};
+
+const typeIcons = {
+  "Frontend": <PiCodeBold />,
+  "Backend": <FaNodeJs />,
+  "Full Stack": <FaTools />,
+  "E-commerce": <FaCartShopping />,
+  "API": <SiExpress />,
+  "Landing Page": <FaWindowMaximize />,
+  "Dashboard": <FaChartPie />,
+  "Portfolio": <FaUser />,
+  "Identidade Visual": <FaPalette />,
+  "Design": <FaPalette />,
+  "UI/UX": <FaPencilRuler />,
+  "UI Design": <FaPencilRuler />,
+  "Motion Design": <FaVideo />,
+  "Social Media": <FaInstagram />,
+  "Trading Indicator": <FaChartLine />,
+  "Trading Automation": <FaRobot />,
+  "Automation": <FaRobot />,
+};
+
+const typeStyles = {
+
+  Development: `
+    border-cyan-400/20
+    bg-cyan-400/10
+    text-cyan-200
+  `,
+
+  Design: `
+    border-pink-400/20
+    bg-pink-400/10
+    text-pink-200
+  `,
+
+  Trading: `
+    border-emerald-400/20
+    bg-emerald-400/10
+    text-emerald-200
+  `,
+
+};
+
+const contextStyles = {
+  "Study Project": `
+    border-violet-400/25
+    bg-violet-400/10
+    text-violet-200
+  `,
+
+  "Client Project": `
+    border-emerald-400/25
+    bg-emerald-400/10
+    text-emerald-200
+  `,
+
+  "Personal Project": `
+    border-cyan-400/25
+    bg-cyan-400/10
+    text-cyan-200
+  `,
+
+  "Open Source": `
+    border-slate-300/25
+    bg-white/10
+    text-slate-200
+  `,
+
+  "Concept": `
+    border-amber-400/25
+    bg-amber-400/10
+    text-amber-200
+  `,
+
+  default: `
+    border-white/15
+    bg-white/10
+    text-slate-200
+  `,
+};
+
+const TypeBadges = ({ project, limit }) => {
+  const types = project.types || [];
+  const visibleTypes = limit ? types.slice(0, limit) : types;
+  const hiddenCount = limit && types.length > limit ? types.length - limit : 0;
+
+  if (!types.length) return null;
+
+  return (
+    <div className="flex-1 min-w-0 max-h-[72px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-cyan-500/30 scrollbar-track-transparent">
+      <div className="flex flex-wrap gap-2">
+        {visibleTypes.map((type, index) => (
+          <span
+            key={`${type}-${index}`}
+            className={`
+              inline-flex items-center gap-2
+              w-fit
+              px-3 py-1
+              rounded-full
+              text-xs font-semibold
+              border
+              backdrop-blur-md
+              whitespace-nowrap
+              ${typeStyles[project.category] || typeStyles.Development}
+            `}
+          >
+            <span className="text-sm">
+              {typeIcons[type]}
+            </span>
+
+            <span>
+              {type}
+            </span>
+          </span>
+        ))}
+
+        {hiddenCount > 0 && (
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold border border-white/15 bg-white/10 text-slate-200 backdrop-blur-md">
+            +{hiddenCount}
+          </span>
+        )}
+      </div>
+    </div>
+  );
+};
+
+//Contexto do projeto
+const ContextBadge = ({ context }) => {
+  if (!context) return null;
+
+  const words = context.trim().split(/\s+/);
+  const hasMoreThanOneWord = words.length > 1;
+
+  return (
+    <span
+      className={`
+        w-full
+        min-h-[34px]
+        inline-flex items-center justify-center
+        px-2 py-1
+        rounded-2xl
+        text-[10px] md:text-[11px]
+        font-bold
+        uppercase tracking-[0.08em]
+        text-center
+        leading-tight
+        border
+        backdrop-blur-md
+        whitespace-normal
+        break-words
+        ${contextStyles[context] || contextStyles.default}
+      `}
+    >
+      <span className="sm:hidden">
+        {hasMoreThanOneWord ? (
+          <>
+            {words[0]}
+            <br />
+            {words.slice(1).join(" ")}
+          </>
+        ) : (
+          context
+        )}
+      </span>
+
+      <span className="hidden sm:inline">
+        {context}
+      </span>
+    </span>
+  );
+};
 
 ////////////////////////////////////////
 // BUTTON CONFIGS
 ////////////////////////////////////////
-
 const buttonIcons = {
 
   demo: (
@@ -299,7 +500,6 @@ const buttonIcons = {
 };
 
 const buttonStyles = {
-
   primary: `
     relative overflow-hidden
 
@@ -452,34 +652,6 @@ const ProjectDetailModal = ({ project, onClose }) => {
       prev === 0 ? project.images.length - 1 : prev - 1
     );
   };
-  ////////////////////////////////////////
-  // Ícones de tecnologia dentro modal de detalhes
-  ////////////////////////////////////////
-  const techIcons = {
-    "HTML5": <FaHtml5 className="text-orange-500 text-base" />,
-    "CSS3": <FaCss3Alt className="text-blue-500 text-base" />,
-    "JavaScript": <FaJsSquare className="text-yellow-400 text-base" />,
-    "React": <FaReact className="text-cyan-400 text-base" />,
-    "Next.js": <SiNextdotjs className="text-white text-base" />,
-    "TailwindCSS": <SiTailwindcss className="text-cyan-300 text-base" />,
-    "Node.js": <FaNodeJs className="text-green-500 text-base" />,
-    "Express": <SiExpress className="text-gray-300 text-base" />,
-    "MongoDB": <SiMongodb className="text-green-400 text-base" />,
-    "PostgreSQL": <SiPostgresql className="text-sky-400 text-base" />,
-    "Git & GitHub": <FaGithub className="text-white text-base" />,
-    "Vercel": <SiVercel className="text-white text-base" />,
-    "Figma": <FaFigma className="text-pink-400 text-base" />,
-    "Python": <FaFigma className="text-pink-400 text-base" />,
-
-    "Photoshop": <span className="text-blue-400 text-sm font-bold">Ps</span>,
-    "Illustrator": <span className="text-orange-400 text-sm font-bold">Ai</span>,
-    "Branding": <span className="text-violet-400 text-sm font-bold">Br</span>,
-
-    "Nelogica NTSL": <span className="text-emerald-400 font-bold tracking-wide">Nelogica NTSL</span>,
-    "Profit Pro": <span className="text-green-300 font-bold tracking-wide">Profit Pro</span>,
-    "MQL5": <span className="text-blue-400 text-sm font-bold">MQL5</span>,
-    "MetaTrader 5": <span className="text-cyan-300 text-sm font-bold">MT5</span>,
-  };
 
   return (
     <>
@@ -495,14 +667,36 @@ const ProjectDetailModal = ({ project, onClose }) => {
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="relative max-w-5xl w-full dark:bg-slate-900 bg-white rounded-3xl overflow-visible shadow-2xl max-h-[90vh] flex flex-col md:flex-row"
+          className="
+            relative
+            w-[94vw]
+            md:w-[80vw]
+            max-w-[940px]
+            md:aspect-[16/9]
+            max-h-[86dvh]
+            md:max-h-[78vh]
+            dark:bg-slate-900
+            bg-white
+            rounded-[28px]
+            overflow-visible
+            shadow-2xl
+            flex flex-col md:flex-row
+          "
           onClick={(e) => e.stopPropagation()}
         >
 
           {/* Botão fechar */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 z-30 bg-black/40 hover:bg-red-500/20 border border-white/10 hover:border-red-500/30 text-white p-3 rounded-2xl backdrop-blur-md transition-all duration-300"
+            className="
+              absolute -top-0 -right-3 z-40
+              bg-white/90 hover:bg-white
+              border border-slate-300
+              text-slate-500 hover:text-red-500
+              p-3 rounded-xl
+              shadow-lg
+              transition-all duration-300
+            "
           >
             <FaTimes />
           </button>
@@ -646,19 +840,78 @@ const ProjectDetailModal = ({ project, onClose }) => {
             )}
           </div>
 
-          {/* Content Section */}
+          {/* Tipo e Contexto */}
           <div className="w-full md:w-1/2 p-5 sm:p-6 md:p-10 flex flex-col h-full">
-            <div className="flex flex-col flex-1 justify-start"></div>
+            <div className="grid grid-cols-[70%_30%] gap-3 mb-4 shrink-0">
+              <div
+                className="
+                  min-w-0
+                  rounded-2xl
+                  border border-cyan-300/15
+                  bg-cyan-950/35
+                  backdrop-blur-xl
+                  px-3 py-2
+                  shadow-[0_0_18px_rgba(34,211,238,0.08)]
+                "
+              >
+                <TypeBadges project={project} />
+              </div>
+
+              <div className="min-w-0 flex items-start justify-end">
+                <ContextBadge context={project.context} />
+              </div>
+            </div>
+
+            {/* Título */}
+            <h2 className="
+              text-2xl sm:text-3xl md:text-[2rem]
+              font-black tracking-tight
+              dark:text-white text-slate-900
+              mt-0
+              mb-2
+              leading-tight
+              shrink-0
+            ">
+              {project.title}
+            </h2>
+
+            {/* Descrição */}
+            <p className="
+            dark:text-slate-300 text-slate-600
+              leading-6 md:leading-7
+              text-base sm:text-lg md:text-lg
+              max-h-[96px] md:max-h-[116px]
+              overflow-y-auto
+              pr-2
+              mb-1
+              scrollbar-thin
+              scrollbar-thumb-cyan-500/30
+              scrollbar-track-transparent
+            ">
+              {project.description}
+            </p>
+
+            <div className="h-2 shrink-0"></div>
 
             {/* Tecnologias */}
-            <div className="flex flex-wrap justify-center md:justify-start gap-2 md:gap-3 mb-2 md:mb-4 max-h-[96px] md:max-h-[120px] overflow-y-auto py-2 px-1 pr-3 scrollbar-thin scrollbar-thumb-cyan-500/30 scrollbar-track-transparent">
+            <div
+              className="
+                flex flex-wrap gap-2 mt-2
+                max-h-[96px] md:max-h-[108px]
+                overflow-y-auto
+                pr-2
+                scrollbar-thin
+                scrollbar-thumb-cyan-500/30
+                scrollbar-track-transparent
+              "
+            >
 
-              {project.tech.map((t, i) => (
+              {(project.tech || []).map((t, i) => (
                 <span
                   key={i}
-                  className="flex items-center gap-1 md:gap-2 text-[11px] md:text-sm font-medium px-2 md:px-4 py-1 md:py-2 rounded-xl dark:bg-slate-800/80 bg-slate-100 dark:text-white text-slate-800 border dark:border-slate-700 border-slate-300 transition-all duration-300 hover:scale-105"
+                  className="flex items-center gap-1 md:gap-2 text-[11px] md:text-xs font-medium px-2 md:px-3 py-1 md:py-1.5 rounded-xl dark:bg-slate-800/80 bg-slate-100 dark:text-white text-slate-800 border dark:border-slate-700 border-slate-300 transition-all duration-300 hover:scale-105"
                 >
-                  <span className="text-base md:text-lg">
+                  <span className="text-sm md:text-base">
                     {techIcons?.[t]}
                   </span>
 
@@ -669,29 +922,17 @@ const ProjectDetailModal = ({ project, onClose }) => {
               ))}
             </div>
 
-            {/* Título */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight dark:text-white text-slate-900 mt-1 md:mt-4 mb-2 md:mb-4 leading-tight">
-              {project.title}
-            </h2>
-
-            {/* Descrição */}
-            <p className="dark:text-slate-300 text-slate-600 leading-relaxed text-base sm:text-lg md:text-lg max-h-[110px] md:max-h-[125px] overflow-y-auto pr-2 mb-4 scrollbar-thin scrollbar-thumb-cyan-500/30 scrollbar-track-transparent">
-              {project.description}
-            </p>
-
-            <div className="flex-1"></div>
-
             {/* Botões */}
             <div
               className={`
-    mt-auto pt-4 border-t border-white/10
-    grid gap-3
+                mt-auto pt-4 border-t border-white/10
+                grid gap-3
 
-    ${project.buttons?.length === 1
-                  ? "grid-cols-1"
-                  : "grid-cols-2"
+                ${project.buttons?.length === 1
+                ? "grid-cols-1"
+                : "grid-cols-2"
                 }
-  `}
+              `}
             >
 
               {project.buttons?.map((button, index) => (
@@ -931,80 +1172,6 @@ const ProjectDetailModal = ({ project, onClose }) => {
 // Card inicial
 ////////////////////////////////////////
 const ProjectCard = ({ project, onClick }) => {
-
-  ////////////////////////////////////////
-  // Ícones de tecnologias no card inicial
-  ////////////////////////////////////////
-  const typeIcons = {
-
-    "E-commerce": <FaCartShopping />,
-
-    "Landing Page": <FaWindowMaximize />,
-
-    "Dashboard": <FaChartPie />,
-
-    "Portfolio": <FaUser />,
-
-    "Identidade Visual": <FaPalette />,
-
-    "Motion Design": <FaVideo/>,
-
-    "Social Media": <FaInstagram />,
-
-    "UI/UX": <FaPencilRuler />,
-
-    "Trading Indicator": <FaChartLine />,
-
-    "Trading Automation": <FaRobot />,
-  };
-
-  const typeStyles = {
-
-    Development: `
-    border-cyan-400/20
-    bg-cyan-400/10
-    text-cyan-200
-  `,
-
-    Design: `
-    border-pink-400/20
-    bg-pink-400/10
-    text-pink-200
-  `,
-
-    Trading: `
-    border-emerald-400/20
-    bg-emerald-400/10
-    text-emerald-200
-  `,
-
-  };
-
-  const techIcons = {
-    "React": <FaReact className="text-cyan-400 text-base" />,
-    "Next.js": <SiNextdotjs className="text-white text-base" />,
-    "JavaScript": <FaJsSquare className="text-yellow-400 text-base" />,
-    "TailwindCSS": <SiTailwindcss className="text-cyan-300 text-base" />,
-    "HTML5": <FaHtml5 className="text-orange-500 text-base" />,
-    "CSS3": <FaCss3Alt className="text-blue-500 text-base" />,
-    "Node.js": <FaNodeJs className="text-green-500 text-base" />,
-    "Express": <SiExpress className="text-gray-300 text-base" />,
-    "MongoDB": <SiMongodb className="text-green-400 text-base" />,
-    "PostgreSQL": <SiPostgresql className="text-sky-400 text-base" />,
-    "Git & GitHub": <FaGithub className="text-white text-base" />,
-    "Vercel": <SiVercel className="text-white text-base" />,
-    "Figma": <FaFigma className="text-pink-400 text-base" />,
-
-    "Photoshop": <span className="text-blue-400 text-sm font-bold">Ps</span>,
-    "Illustrator": <span className="text-orange-400 text-sm font-bold">Ai</span>,
-    "Branding": <span className="text-violet-400 text-sm font-bold">Br</span>,
-
-    "Nelogica NTSL": <span className="text-emerald-400 font-bold tracking-wide">Nelogica NTSL</span>,
-    "Profit Pro": <span className="text-green-300 font-bold tracking-wide">Profit Pro</span>,
-    "MQL5": <span className="text-blue-400 text-sm font-bold">MQL5</span>,
-    "MetaTrader 5": <span className="text-cyan-300 text-sm font-bold">MT5</span>,
-  };
-
   return (
     <div
       onClick={() => onClick(project)}
@@ -1020,56 +1187,36 @@ const ProjectCard = ({ project, onClick }) => {
 
       <div className="absolute inset-0 flex flex-col justify-between p-6 bg-gradient-to-t from-black/70 via-black/20 to-transparent">
         <div className="translate-y-0 group-hover:-translate-y-1 transition-all duration-500 bg-black/25 backdrop-blur-[2px] rounded-2xl p-2 -m-3">
-          <div className="flex justify-between items-start">
-            {/* TYPE BADGE */}
+          <div className="space-y-3">
+            <div className="flex items-start justify-between gap-3 w-full">
+              <TypeBadges project={project} limit={2} />
 
-            {project.type && (
+              <ContextBadge context={project.context} />
+            </div>
 
-              <div
-                className={`
-      inline-flex items-center gap-2
-      w-fit
-      px-3 py-1 mb-3
-      rounded-full
-      text-xs font-semibold
-      border
-      backdrop-blur-md
+            <div className="flex justify-between items-start gap-4">
+              <h3 className="text-2xl font-black tracking-tight text-white transition-all duration-500 dark:group-hover:text-cyan-300 group-hover:text-cyan-300 group-hover:drop-shadow-[0_0_12px_rgba(34,211,238,0.45)]">
+                {project.title}
+              </h3>
 
-      ${typeStyles[project.category]}
-    `}
-              >
-
-                <span className="text-sm">
-                  {typeIcons[project.type]}
-                </span>
-
-                <span>
-                  {project.type}
-                </span>
-
+              <div className="bg-white/10 backdrop-blur-md p-2 rounded-full opacity-0 scale-75 rotate-[-10deg] group-hover:opacity-100 group-hover:scale-100 group-hover:rotate-0 transition-all duration-500 ease-out shrink-0">
+                <FaExternalLinkAlt className="text-white" />
               </div>
-
-            )}
-            <h3 className="text-2xl font-black tracking-tight text-white transition-all duration-500 dark:group-hover:text-cyan-300 group-hover:text-cyan-300 group-hover:drop-shadow-[0_0_12px_rgba(34,211,238,0.45)]">{project.title}</h3>
-            <div className="bg-white/10 backdrop-blur-md p-2 rounded-full opacity-0 scale-75 rotate-[-10deg] group-hover:opacity-100 group-hover:scale-100 group-hover:rotate-0 transition-all duration-500 ease-out">
-              <FaExternalLinkAlt className="text-white" />
             </div>
           </div>
+
           <p className="text-slate-200 dark:text-slate-300 mt-1.5 text-sm leading-relaxed opacity-80 transition-all duration-500 group-hover:opacity-100 group-hover:text-white line-clamp-2">
             {project.description}</p>
         </div>
 
-
-
-
         <div className="translate-y-0 group-hover:-translate-y-2 transition-all duration-700 ease-out bg-black/25 group-hover:bg-black/40 backdrop-blur-[2px] rounded-2xl p-2 -m-3">
           <div className="flex flex-wrap gap-2">
-            {project.tech.slice(0, 4).map((t, i) => (
+            {(project.tech || []).slice(0, 4).map((t, i) => (
               <span key={i} className="flex items-center gap-2 text-xs font-semibold px-3 py-2 rounded-xl bg-black/30 border border-white/10 backdrop-blur-md text-white/80 transition-all duration-300 group-hover:scale-105 group-hover:text-white group-hover:border-cyan-400/30 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.25)]">
                 {techIcons?.[t] || t}
               </span>
             ))}
-            {project.tech.length > 4 && (
+            {(project.tech || []).length > 4 && (
               <span className="text-xs font-bold px-3 py-1.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">
                 +{project.tech.length - 4}
               </span>
@@ -1100,41 +1247,6 @@ function ProjectSection() {
   const [activeTab, setActiveTab] = useState(getInitialTab);
   const [previewProject, setPreviewProject] = useState(null);
   const { hideNavbar, showNavbar } = useNavbar();
-
-  // === Database States ===
-  const [projectsFromDB, setProjectsFromDB] = useState([]);
-  const [loadingProjects, setLoadingProjects] = useState(true);
-
-  // Fetch projects from database
-  useEffect(() => {
-    async function fetchProjects() {
-      try {
-        console.log('🔍 Fetching projects from Supabase...');
-        const { data, error } = await supabase
-          .from('projects')
-          .select('*')
-          .order('created_at', { ascending: false });
-
-        if (error) {
-          console.error('❌ Error fetching projects:', error);
-          throw error;
-        }
-
-        if (data && data.length > 0) {
-          console.log('✅ Projects loaded from database:', data.length, 'projects');
-          console.log('📊 Projects data:', data);
-          setProjectsFromDB(data);
-        } else {
-          console.log('⚠️ No projects found in database, using fallback data');
-        }
-      } catch (err) {
-        console.error('❌ Error fetching projects:', err);
-      } finally {
-        setLoadingProjects(false);
-      }
-    }
-    fetchProjects();
-  }, []);
 
   // Esconde a navbar quando o modal é aberto
   useEffect(() => {
@@ -1182,27 +1294,10 @@ function ProjectSection() {
   ];
 
   // Use database projects if available, fallback to dummy data
-  const activeProjects = projectsFromDB.length > 0 ? projectsFromDB : projectsData;
+  const activeProjects = projectsData;
 
   // Transform database projects to match UI format
-  const transformedProjects = activeProjects.map(p => {
-    // If has UUID id, it's from database - transform it
-    if (p.id && typeof p.id === 'string' && p.id.includes('-')) {
-      return {
-        id: p.id,
-        title: p.title,
-        description: p.description,
-        tech: p.tags || [],
-        link: p.demo_url || p.github_url || '#', // Use demo_url as primary link
-        github: p.github_url, // Add specific github field
-        image: p.image_url,
-        category: 'Database', // All DB projects in one category
-        featured: p.featured || false
-      };
-    }
-    // Static data already in correct format
-    return p;
-  });
+  const transformedProjects = activeProjects;
 
   //obs 1: analisar essa parte do codigo
   // Filter projects by category (only applies to static dummy data)
@@ -1339,35 +1434,30 @@ function ProjectSection() {
             >
 
               <>
-                {loadingProjects ? (
-                  <div className="flex justify-center py-12">
-                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-cyan-400"></div>
-                  </div>
-                ) : (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                    {filteredProjects.length > 0 ? (
-                      filteredProjects.map((p, i) => (
-                        <ProjectCard
-                          key={p.id || i}
-                          project={p}
-                          onClick={(project) => {
-                            window.history.pushState(
-                              { modal: true },
-                              ""
-                            );
-                            setPreviewProject(project);
-                          }}
-                        />
-                      ))
-                    ) : (
-                      <div className="col-span-full text-center text-slate-400 py-12">
-                        Nenhum projeto encontrado.
-                      </div>
-                    )}
+                  {filteredProjects.length > 0 ? (
+                    filteredProjects.map((p, i) => (
+                      <ProjectCard
+                        key={p.id || i}
+                        project={p}
+                        onClick={(project) => {
+                          window.history.pushState(
+                            { modal: true },
+                            ""
+                          );
 
-                  </div>
-                )}
+                          setPreviewProject(project);
+                        }}
+                      />
+                    ))
+                  ) : (
+                    <div className="col-span-full text-center text-slate-400 py-12">
+                      Nenhum projeto encontrado.
+                    </div>
+                  )}
+
+                </div>
               </>
 
 
