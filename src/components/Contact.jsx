@@ -12,14 +12,14 @@ import {
   FaHeart,
   FaReply,
   FaTrash,
-  FaCog,
   FaThumbtack
 } from 'react-icons/fa';
 import { SiTiktok } from 'react-icons/si';
-import AdminDashboard from './AdminDashboard';
-import AdminLogin from './AdminLogin';
-import { useAdmin } from '../contexts/AdminContext';
 import { supabase } from '../lib/supabase';
+
+const MotionDiv = motion.div;
+const MotionButton = motion.button;
+const MotionAnchor = motion.a;
 
 const Contact = () => {
   // States untuk contact form
@@ -39,10 +39,6 @@ const Contact = () => {
   });
   const [comments, setComments] = useState([]);
   const [isSubmittingComment, setIsSubmittingComment] = useState(false);
-  const [isAdminOpen, setIsAdminOpen] = useState(false);
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
-
-  const { isAuthenticated } = useAdmin();
 
   // Load comments dari Supabase
   useEffect(() => {
@@ -253,7 +249,7 @@ const Contact = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Title */}
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -270,26 +266,11 @@ const Contact = () => {
           <p className="text-xl dark:text-slate-400 text-slate-600 font-cascadia">
             Mari berkolaborasi dan ciptakan sesuatu yang amazing!
           </p>
-
-          {/* Admin Button - positioned top right */}
-          <button
-            onClick={() => {
-              if (isAuthenticated) {
-                setIsAdminOpen(true);
-              } else {
-                setIsLoginOpen(true);
-              }
-            }}
-            className="absolute top-0 right-0 bg-slate-800/50 hover:bg-slate-700/50 backdrop-blur-sm p-3 rounded-full border border-slate-600/50 hover:border-cyan-400/50 transition-all duration-300 group"
-            title={isAuthenticated ? "Admin Panel" : "Admin Login"}
-          >
-            <FaCog className="text-slate-400 group-hover:text-cyan-400 transition-colors duration-300 group-hover:rotate-90" />
-          </button>
-        </motion.div>
+        </MotionDiv>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
           {/* Left Side - Contact Form & Social */}
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -353,7 +334,7 @@ const Contact = () => {
                     </div>
                   </div>
 
-                  <motion.button
+                  <MotionButton
                     type="submit"
                     disabled={isSubmittingContact}
                     whileHover={{ scale: 1.02 }}
@@ -368,7 +349,7 @@ const Contact = () => {
                         <span>Kirim Pesan</span>
                       </>
                     )}
-                  </motion.button>
+                  </MotionButton>
                 </form>
               </div>
             </div>
@@ -387,7 +368,7 @@ const Contact = () => {
                 <h3 className="text-2xl font-bold dark:text-white text-slate-900 mb-6 text-center">Connect With Me</h3>
                 <div className="grid gap-4">
                   {socialLinks.map((social, index) => (
-                    <motion.a
+                    <MotionAnchor
                       key={social.name}
                       href={social.url}
                       target="_blank"
@@ -409,15 +390,15 @@ const Contact = () => {
                       <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <FaReply className="rotate-180" />
                       </div>
-                    </motion.a>
+                    </MotionAnchor>
                   ))}
                 </div>
               </div>
             </div>
-          </motion.div>
+          </MotionDiv>
 
           {/* Right Side - Comments System */}
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -482,7 +463,7 @@ const Contact = () => {
                     </div>
                   </div>
 
-                  <motion.button
+                  <MotionButton
                     type="submit"
                     disabled={isSubmittingComment}
                     whileHover={{ scale: 1.02 }}
@@ -497,7 +478,7 @@ const Contact = () => {
                         <span>Post Comment</span>
                       </>
                     )}
-                  </motion.button>
+                  </MotionButton>
                 </form>
               </div>
             </div>
@@ -513,7 +494,7 @@ const Contact = () => {
                 <div className="space-y-4 max-h-[500px] overflow-y-auto custom-scrollbar pb-20 pr-2">
                   <AnimatePresence>
                     {comments.map((comment, index) => (
-                      <motion.div
+                      <MotionDiv
                         key={comment.id}
                         initial={{ opacity: 0, y: 50, scale: 0.9 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -565,7 +546,7 @@ const Contact = () => {
                             </div>
                           </div>
                         </div>
-                      </motion.div>
+                      </MotionDiv>
                     ))}
                   </AnimatePresence>
 
@@ -581,20 +562,9 @@ const Contact = () => {
                 <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t dark:from-[#0f172a] from-zinc-50 via-zinc-50/60 dark:via-[#0f172a]/60 to-transparent pointer-events-none z-10 rounded-b-2xl" />
               </div>
             </div>
-          </motion.div>
+          </MotionDiv>
         </div>
       </div>
-
-      {/* Admin Dashboard Modal */}
-      <AnimatePresence>
-        {isAdminOpen && (
-          <AdminDashboard
-            isOpen={isAdminOpen}
-            onClose={() => setIsAdminOpen(false)}
-          />
-        )}
-      </AnimatePresence>
-
       {/* Custom Scrollbar Styles */}
       <style>{`
         .custom-scrollbar::-webkit-scrollbar {

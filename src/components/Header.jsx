@@ -1,27 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
-import { FaShieldAlt, FaSun, FaMoon } from 'react-icons/fa';
 import bangzenLogo from '../assets/images/BGZENBGIJObulat.png';
 import { useNavbar } from '../contexts/NavbarContext';
 import { useTheme } from '../contexts/ThemeContext';
-import { useAdmin } from '../contexts/AdminContext';
 import { useLocation, useNavigate } from 'react-router-dom';
-import AdminLogin from './AdminLogin';
-import AdminDashboard from './AdminDashboard';
 import { StaggeredMenu } from './StaggeredMenu';
 
 const CLIP_PATH =
   'polygon(0 0, 100% 0, 100% 85%, 68% 85%, 64% 100%, 36% 100%, 32% 85%, 0 85%)';
 
+const MotionDiv = motion.div;
+
 const Header = () => {
   // const [isMenuOpen, setIsMenuOpen] = useState(false); // REPLACED BY CONTEXT
   const [isScrolled, setIsScrolled] = useState(false);
-  const [showAdminLogin, setShowAdminLogin] = useState(false);
-  const [showAdminDashboard, setShowAdminDashboard] = useState(false);
 
-  const { isNavbarVisible, hideNavbar, showNavbar, isMenuOpen, setIsMenuOpen } = useNavbar();
-  const { isAuthenticated, logout } = useAdmin();
-  const { theme, toggleTheme } = useTheme();
+  const { isNavbarVisible, isMenuOpen, setIsMenuOpen } = useNavbar();
+  const { theme } = useTheme();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -47,38 +42,6 @@ const Header = () => {
       window.scrollTo(0, 0);
     }
   }, [location]);
-
-  const handleAdminAccess = () => {
-    if (isAuthenticated) {
-      setShowAdminDashboard(true);
-      hideNavbar();
-    } else {
-      setShowAdminLogin(true);
-      hideNavbar();
-    }
-  };
-
-  const handleLoginSuccess = () => {
-    setShowAdminLogin(false);
-    setShowAdminDashboard(true);
-    hideNavbar();
-  };
-
-  const handleAdminLogout = () => {
-    logout();
-    setShowAdminDashboard(false);
-    showNavbar();
-  };
-
-  const handleCloseAdminDashboard = () => {
-    setShowAdminDashboard(false);
-    showNavbar();
-  };
-
-  const handleCloseAdminLogin = () => {
-    setShowAdminLogin(false);
-    showNavbar();
-  };
 
   // Improved Navigation Handler
   const handleNavClick = (e, href) => {
@@ -125,7 +88,7 @@ const Header = () => {
     <>
       <AnimatePresence>
         {isNavbarVisible && (
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, y: -60 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -60 }}
@@ -224,7 +187,7 @@ const Header = () => {
                     </div>
                   </a>
 
-                  {/* Desktop: Right Navigation & Admin Button (End) */}
+                  {/* Desktop: Right Navigation */}
                   <div className="justify-self-end flex items-center gap-4">
                     {/* Theme Toggle */}
                     {/* Theme Toggle Removed - Moved to FloatingToggle */}
@@ -234,19 +197,12 @@ const Header = () => {
                       <NavLink href="#about">About</NavLink>
                       <NavLink href="#contact">Contact</NavLink>
                     </ul>
-                    <button
-                      onClick={handleAdminAccess}
-                      className="flex items-center gap-2 dark:text-slate-400 text-slate-500 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors duration-300 pointer-events-auto"
-                      title={isAuthenticated ? "Admin Dashboard" : "Admin Login"}
-                    >
-                      <FaShieldAlt className={`text-lg ${isAuthenticated ? 'text-green-500' : 'currentColor'}`} />
-                    </button>
                   </div>
                 </div>
 
               </nav>
             </header>
-          </motion.div>
+          </MotionDiv>
         )}
       </AnimatePresence>
 
@@ -261,26 +217,11 @@ const Header = () => {
           { label: 'About', link: '#about', onClick: (e) => handleNavClick(e, '#about') },
           { label: 'Contact', link: '#contact', onClick: (e) => handleNavClick(e, '#contact') },
         ]}
-        socialItems={[
-          { label: 'Admin', link: '#', onClick: (e) => { e.preventDefault(); handleAdminAccess(); } }
-        ]}
-        displaySocials={true}
+        socialItems={[]}
+        displaySocials={false}
         displayItemNumbering={true}
         colors={['#0891b2', '#06b6d4', '#155e75']} // Cyan palette
         accentColor="#06b6d4"
-      />
-
-      {/* Admin Login Modal */}
-      <AdminLogin
-        isOpen={showAdminLogin}
-        onClose={handleCloseAdminLogin}
-        onSuccess={handleLoginSuccess}
-      />
-
-      {/* UNIFIED Admin Dashboard */}
-      <AdminDashboard
-        isOpen={showAdminDashboard}
-        onClose={handleCloseAdminDashboard}
       />
 
       {/* Animasi gradient keyframes */}

@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react';
 import { motion } from "framer-motion";
-import { FaGithub, FaInstagram, FaLinkedin, FaDownload, FaBriefcase, FaCode, FaCertificate, FaGlobe, FaArrowRight, FaCube } from 'react-icons/fa';
+import { FaGithub, FaInstagram, FaLinkedin, FaDownload, FaBriefcase, FaCube } from 'react-icons/fa';
 import Spline from '@splinetool/react-spline';
 import { AnimatedGradientTextDemo } from '../components/AnimatedGradientTextDemo';
 import GradientText from '../components/GradientText';
@@ -15,6 +15,9 @@ import { ButtonMovingBorder } from '../components/MovingBorderButton';
 import ProjectSection from '../components/ProjectSection';
 import Contact from '../components/Contact';
 import { useTheme } from '../contexts/ThemeContext';
+
+const MotionDiv = motion.div;
+const MotionH1 = motion.h1;
 
 const Home = () => {
     const { theme } = useTheme();
@@ -32,16 +35,8 @@ const Home = () => {
         setIs3dEnabled(prev => !prev);
     };
 
-    
-    const stats = [
-        { icon: <FaCode />, value: "13", title: "TOTAL PROJECTS", description: "Innovative web solutions crafted" },
-        { icon: <FaCertificate />, value: "13", title: "CERTIFICATES", description: "Professional skills validated" },
-        { icon: <FaGlobe />, value: "3", title: "YEARS OF EXPERIENCE", description: "Continuous learning journey" },
-    ];
-    
-
     return (
-        <motion.div
+        <MotionDiv
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 20 }}
@@ -62,10 +57,10 @@ const Home = () => {
 
             <section id="home" className="flex flex-col md:flex-row items-center gap-10 pt-20 pb-16 lg:pt-0 lg:pb-20">
                 <div className="flex-1 dark:text-white text-slate-800 space-y-6 pt-16 md:pt-40 order-last md:order-none text-center md:text-left flex flex-col items-center md:items-start">
-                    <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}>
+                    <MotionDiv initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}>
                         <AnimatedGradientTextDemo />
-                    </motion.div>
-                    <motion.h1
+                    </MotionDiv>
+                    <MotionH1
                         initial={{ opacity: 0, x: -60 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
@@ -79,15 +74,15 @@ const Home = () => {
                     >
                         Paulo Viana
                         <span className="block mt-2 text-2xl md:text-3xl leading-tight">Desenvolvedor fullstack</span>
-                    </motion.h1>
-                    <motion.div initial={{ opacity: 0, x: 60 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}>
+                    </MotionH1>
+                    <MotionDiv initial={{ opacity: 0, x: 60 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}>
                         <GradientText colors={["#40f2ffff", "#4079ff", "#40fffcff", "#4079ff", "#40f9ffff"]} animationSpeed={3} className="custom-class font-cascadia font-bold" />
-                    </motion.div>
-                    <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.55, ease: "easeOut" }}>
+                    </MotionDiv>
+                    <MotionDiv initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.55, ease: "easeOut" }}>
                         <TextGenerateEffect words={'Desenvolvimento, automações e soluções digitais com foco em performance, experiência e tecnologia.'} />
-                    </motion.div>
+                    </MotionDiv>
                     
-                    <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 1.0, ease: "easeOut" }} className="flex flex-row gap-4 mt-8">
+                    <MotionDiv initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 1.0, ease: "easeOut" }} className="flex flex-row gap-4 mt-8">
                         <a href="https://github.com/PauloVianaTech" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" className="group relative flex h-12 w-12 items-center justify-center rounded-full border dark:border-slate-700 border-slate-200 dark:bg-slate-900/[0.8] bg-white text-slate-600 dark:text-white transition-all duration-300 hover:border-cyan-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:shadow-md dark:hover:shadow-[0_0_24px_2px_#00ffdc]">
                             <FaGithub className="h-6 w-6 dark:text-slate-400 text-slate-600 transition-all duration-300 group-hover:text-cyan-600 dark:group-hover:text-cyan-300" />
                         </a>
@@ -97,7 +92,7 @@ const Home = () => {
                         <a href="https://www.linkedin.com/in/paulo-camilo-viana" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" className="group relative flex h-12 w-12 items-center justify-center rounded-full border dark:border-slate-700 border-slate-200 dark:bg-slate-900/[0.8] bg-white text-slate-600 dark:text-white transition-all duration-300 hover:border-cyan-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:shadow-md dark:hover:shadow-[0_0_24px_2px_#00ffdc]">
                             <FaLinkedin className="h-6 w-6 dark:text-slate-400 text-slate-600 transition-all duration-300 group-hover:text-cyan-600 dark:group-hover:text-cyan-300" />
                         </a>
-                    </motion.div>
+                    </MotionDiv>
                 </div>
 
                 {/* 3. Render Lanyard secara kondisional */}
@@ -113,7 +108,7 @@ const Home = () => {
                 className="py-12 md:py-18 gap-0 w-full mx-0 pt-20"
                 style={{ width: "100vw", position: "relative", left: "50%", right: "50%", marginLeft: "-50vw", marginRight: "-50vw" }}
             >
-                <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.6, ease: "easeOut" }} className="text-center">
+                <MotionDiv initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.6, ease: "easeOut" }} className="text-center">
                     <div className="relative flex w-full flex-col items-center justify-center overflow-hidden mb-20">
                         <VelocityScroll defaultVelocity={3} numRows={1} className="max-w-full">
                             <span className="font-moderniz font-bold" style={{ fontSize: "2.5rem", lineHeight: "1.1", color: theme === 'dark' ? "#00ffdc" : "#0891b2", textShadow: theme === 'dark' ? "2px 2px 0 #000754, 4px 4px 0 #4079ff, 0 4px 12px #40ffaa, 0 1px 0 #00ffdc" : "none", background: "none", WebkitBackgroundClip: "unset", WebkitTextFillColor: "unset", filter: theme === 'dark' ? 'none' : 'none', opacity: theme === 'dark' ? 1 : 0.3 }}>
@@ -129,37 +124,34 @@ const Home = () => {
                         </VelocityScroll>
                     </div>
                     
-                </motion.div>
+                </MotionDiv>
 
                 <div className="flex flex-col md:flex-row items-center justify-center">
                     {is3dEnabled && (
-                        <motion.div
+                        <MotionDiv
                             initial={{ opacity: 0, scale: 0.9 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true, amount: 0.3 }}
                             transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
                             className="md:w-1/3 flex justify-center"
                         >
-                            {/* <div className="w-full h-[420px] md:h-[530px] flex items-center justify-center"> 
-                                <Spline scene="https://prod.spline.design/FcZ66SFMX1YbF-0I/scene.splinecode" />
-                            </div> */}
-                        </motion.div>
+                        
+                        </MotionDiv>
                     )}
 
-                    <motion.div
+                    <MotionDiv
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.3 }}
                         transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
                         className={`dark:text-white text-slate-800 text-center md:text-left px-4 md:px-8 transition-all duration-700 ${is3dEnabled ? 'md:w-1/2' : 'md:w-2/3'}`}
-                    >
-                        {/*<p className="text-2xl dark:text-gray-300 text-slate-500 font-moderniz my" style={{ textShadow: theme === 'dark' ? "2px 2px 0 #000754, 4px 4px 0 #4079ff, 0 4px 12px #40ffaa, 0 1px 0 #00ffdc" : "none" }}>Hello, I'm</p>*/}
+                    >                        
                         <h3 className="text-4xl font-bold dark:text-white text-slate-900 my-2 font-moderniz" style={{ textShadow: theme === 'dark' ? "2px 2px 0 #000754, 4px 4px 0 #4079ff, 0 4px 12px #40ffaa, 0 1px 0 #00ffdc" : "none" }}>Paulo Viana</h3>
                         <p className="dark:text-white/80 text-slate-600 leading-relaxed mt-4 font-cascadia text-justify">
                             Atuo no desenvolvimento de interfaces modernas, automações e soluções digitais, unindo experiência em design, tecnologia e inovação para criar produtos funcionais e intuitivos.
                         </p>
                         <div className="my-6 dark:bg-slate-900/50 bg-slate-50 border-l-4 dark:border-[#00ffdc] border-cyan-600 p-4 rounded-r-lg italic dark:text-white/70 text-slate-700 font-cascadia dark:shadow-none shadow-md">
-                            ""Tecnologia, automação e inovação aplicadas a soluções reais.""
+                            "Tecnologia, automação e inovação aplicadas a soluções reais."
                         </div>
                         <div className="flex flex-row sm:flex-row gap-4 mt-8 justify-center md:justify-start items-center">
                             <ButtonMovingBorder as="a" href="/cv.pdf" download duration={3000} borderRadius="0.75rem" className="dark:bg-slate-900/[0.8] bg-white border dark:border-slate-800 border-slate-200 dark:text-white text-slate-800 font-semibold flex items-center justify-center gap-2 transition-all duration-300 dark:shadow-none shadow-md hover:shadow-lg dark:hover:shadow-[0_0_24px_8px_#40ffaa]">
@@ -169,28 +161,8 @@ const Home = () => {
                                 <FaBriefcase /> Ver Projetos
                             </ButtonMovingBorder>
                         </div>
-                    </motion.div>
+                    </MotionDiv>
                 </div>
-
-                <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }} className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mt-10 px-4 md:px-0">
-                    {stats.map((stat, index) => (
-                        <div key={index} className="group relative p-6 rounded-2xl dark:bg-slate-900/90 bg-white border dark:border-slate-700/50 border-slate-200 dark:shadow-none shadow-lg transition-all duration-300 hover:border-cyan-400/50 hover:shadow-xl dark:hover:shadow-[0_0_24px_0px_#00ffdc50] cursor-pointer">
-                            <div className="flex justify-between items-start">
-                                <div className="flex flex-col">
-                                    <div className="p-3 mb-4 rounded-full dark:bg-slate-800/80 bg-slate-50 border dark:border-slate-700/60 border-slate-100 w-max dark:group-hover:bg-cyan-900/50 group-hover:bg-cyan-50 group-hover:border-cyan-200 transition-all duration-300">
-                                        <div className="text-2xl dark:text-slate-400 text-slate-500 group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors duration-300">{stat.icon}</div>
-                                    </div>
-                                    <h3 className="text-sm font-semibold uppercase tracking-wider dark:text-slate-400 text-slate-500 group-hover:text-cyan-700 dark:group-hover:text-slate-300 transition-colors duration-300">{stat.title}</h3>
-                                    <p className="text-xs dark:text-slate-500 text-slate-400 mt-1">{stat.description}</p>
-                                </div>
-                                <div className="flex flex-col items-end">
-                                    <p className="text-5xl font-bold dark:text-white text-slate-900 transition-all duration-300 group-hover:text-cyan-600 dark:group-hover:text-cyan-300">{stat.value}</p>
-                                    <FaArrowRight className="text-slate-400 mt-auto group-hover:text-cyan-500 transition-all duration-300 -rotate-45" />
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </motion.div>
             </section>
 
             <section id="projects" className="md:py-18">
@@ -205,7 +177,7 @@ const Home = () => {
                 <div className="text-sm">© {new Date().getFullYear()} Paulo Camilo da Silva Viana. All rights reserved.</div>
                 <div className="text-xs mt-2">Desenvolvido com React, Tailwind CSS e Framer Motion.</div>
             </footer>
-        </motion.div>
+        </MotionDiv>
     );
 };
 
