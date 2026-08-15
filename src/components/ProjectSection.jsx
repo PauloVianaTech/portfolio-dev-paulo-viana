@@ -13,7 +13,7 @@ import { projectsData } from "../data/projectsData";
 
 import ProjectCard from "./project/cards/ProjectCard";
 import ProjectDetailModal from "./project/modal/ProjectDetailModal";
-import LineShadowText from "./project/ui/LineShadowText";
+import LineShadowText from "./project/UI/LineShadowText";
 
 import "./project/styles/projectSection.css";
 
