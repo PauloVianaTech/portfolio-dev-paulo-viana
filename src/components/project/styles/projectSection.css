@@ -47,6 +47,20 @@
     background: rgba(34, 211, 238, 0.45);
 }
 
+.image-thumbnails-scroll::-webkit-scrollbar {
+    height: 5px;
+}
+
+@media (min-width: 768px) {
+    .image-thumbnails-scroll::-webkit-scrollbar-thumb {
+        background: rgba(14, 165, 233, 0.82);
+    }
+
+    .image-thumbnails-scroll::-webkit-scrollbar-thumb:hover {
+        background: rgba(34, 211, 238, 0.95);
+    }
+}
+
 .hide-scrollbar::-webkit-scrollbar {
     display: none;
 }
@@ -54,4 +68,44 @@
 .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+.project-grid-shell {
+    isolation: isolate;
+    border-color: rgba(64, 242, 255, 0.38) !important;
+}
+
+/* O cabeçalho permanece visualmente acima dos cards, mas apenas os filtros
+   podem receber eventos; o restante da área deixa o clique passar ao card. */
+.pin-spacer:has(.project-pinned-intro),
+.project-pinned-intro,
+.project-pinned-intro__content,
+.project-pinned-intro__filters {
+    pointer-events: none !important;
+}
+
+.project-pinned-intro__filter-controls,
+.project-pinned-intro__filter-controls * {
+    pointer-events: auto !important;
+}
+
+.project-grid-border-glow {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: visible;
+    clip-path: inset(var(--project-glow-clip-top, 100%) 0 var(--project-glow-clip-bottom, 0));
+    opacity: var(--project-glow-opacity, 0);
+    transition: opacity 120ms linear;
+}
+
+.project-grid-border-glow rect {
+    fill: none;
+    stroke: #40f2ff;
+    stroke-width: 2;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 3px rgba(64, 242, 255, 0.92));
 }

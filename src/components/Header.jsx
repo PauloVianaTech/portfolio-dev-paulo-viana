@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import bangzenLogo from '../assets/images/BGZENBGIJObulat.png';
 import { useNavbar } from '../contexts/NavbarContext';
@@ -151,14 +151,14 @@ const Header = () => {
                   <a href="/" onClick={(e) => handleNavClick(e, '#home')} className="flex items-center gap-3">
                     <img src={bangzenLogo} alt="Bangzen Logo" className="h-12 w-12 flex-shrink-0" />
                     <div>
-                      <h1 className="font-moderniz text-sm dark:text-[#00ffdc] text-slate-800 whitespace-nowrap">Paulo Viana</h1>
-                      <p className="font-moderniz text-[9px] dark:text-[#00ffdc] text-slate-600" style={{ textShadow: 'none' }}>
-                        Let's see the awesome Experience
+                      <h1 className="font-display text-sm font-black uppercase tracking-[0.16em] dark:text-[#00ffdc] text-slate-800 whitespace-nowrap">Paulo Viana</h1>
+                      <p className="font-display text-[9px] font-black uppercase tracking-[0.12em] dark:text-[#00ffdc] text-slate-600" style={{ textShadow: 'none' }}>
+                        Portfólio 2026
                       </p>
                     </div>
                   </a>
                   {/* Mobile: Hamburger Button (Right) */}
-                  <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="dark:text-[#00ffdc] text-slate-800 text-3xl pointer-events-auto">
+                  <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="mr-2 dark:text-[#00ffdc] text-slate-800 text-3xl pointer-events-auto">
                     &#9776;
                   </button>
                 </div>
@@ -167,9 +167,8 @@ const Header = () => {
                 <div className="hidden w-full md:grid grid-cols-3 items-center px-8 relative min-h-[48px]">
                   {/* Desktop: Left Navigation (Start) */}
                   <ul className="justify-self-start flex items-center list-none gap-8 lg:gap-10">
-                    <NavLink href="#home">Home</NavLink>
-                    <NavLink href="#projects">Project</NavLink>
-                    <NavLink href="/gallery" isGallery>Gallery</NavLink>
+                    <NavLink href="#home">Início</NavLink>
+                    <NavLink href="#projects">Projetos</NavLink>
                   </ul>
 
                   {/* Desktop: Center Logo & Text (Center) */}
@@ -180,9 +179,9 @@ const Header = () => {
                   >
                     {/*{<img src={bangzenLogo} alt="Bangzen Logo" className="h-12 w-12" />} LOGO AUTOR  */}
                     <div className="block">
-                      <h1 className="font-moderniz text-base dark:text-[#00ffdc] text-slate-800">Paulo Viana</h1>
-                      <p className="font-moderniz text-[10px] dark:text-[#00ffdc] text-slate-600" style={{ textShadow: 'none' }}>
-                        Portfolio 2026
+                      <h1 className="font-display text-base font-black uppercase tracking-[0.18em] dark:text-[#00ffdc] text-slate-800">Paulo Viana</h1>
+                      <p className="font-display text-[10px] font-black uppercase tracking-[0.16em] dark:text-[#00ffdc] text-slate-600" style={{ textShadow: 'none' }}>
+                        Portfólio 2026
                       </p>
                     </div>
                   </a>
@@ -194,8 +193,8 @@ const Header = () => {
 
 
                     <ul className="flex items-center list-none gap-8 lg:gap-10">
-                      <NavLink href="#about">About</NavLink>
-                      <NavLink href="#contact">Contact</NavLink>
+                      <NavLink href="#about">Sobre</NavLink>
+                      <NavLink href="#contact">Contato</NavLink>
                     </ul>
                   </div>
                 </div>
@@ -211,11 +210,10 @@ const Header = () => {
         isOpen={isMenuOpen}
         onMenuClose={() => setIsMenuOpen(false)}
         items={[
-          { label: 'Home', link: '#home', onClick: (e) => handleNavClick(e, '#home') },
-          { label: 'Project', link: '#projects', onClick: (e) => handleNavClick(e, '#projects') },
-          { label: 'Gallery', link: '/gallery', onClick: (e) => handleNavClick(e, '/gallery') },
-          { label: 'About', link: '#about', onClick: (e) => handleNavClick(e, '#about') },
-          { label: 'Contact', link: '#contact', onClick: (e) => handleNavClick(e, '#contact') },
+          { label: 'Início', link: '#home', onClick: (e) => handleNavClick(e, '#home') },
+          { label: 'Projetos', link: '#projects', onClick: (e) => handleNavClick(e, '#projects') },
+          { label: 'Sobre', link: '#about', onClick: (e) => handleNavClick(e, '#about') },
+          { label: 'Contato', link: '#contact', onClick: (e) => handleNavClick(e, '#contact') },
         ]}
         socialItems={[]}
         displaySocials={false}
@@ -242,3 +240,4 @@ const Header = () => {
 };
 
 export default Header;
+

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { FaTimes } from "react-icons/fa";
 
@@ -19,29 +19,125 @@ const ProjectDetailModal = ({
 }) => {
   const [currentImage, setCurrentImage] = useState(0);
   const [fullscreenImage, setFullscreenImage] = useState(false);
+  const [currentCarouselSlide, setCurrentCarouselSlide] = useState(null);
+  const fullscreenHistoryEntryRef = useRef(false);
 
-  const images = useMemo(() => {
+  const mediaItems = useMemo(() => {
     if (!project) return [];
-    return project.images?.length ? project.images : [project.image];
+
+    // Estrutura atual: cada mídia traz seu próprio tipo e legenda.
+    if (project.media?.length) return project.media;
+
+    // Compatibilidade temporária para projetos ainda no formato antigo.
+    const legacyImages = project.images?.length ? project.images : [project.image];
+    return legacyImages.filter(Boolean).map((src, index) => {
+      const legacyCarousel = project.carousels?.[index];
+
+      if (legacyCarousel?.images?.length) {
+        return {
+          type: "carousel",
+          slides: legacyCarousel.images.map((slideSrc, slideIndex) => ({
+            type: "image",
+            src: slideSrc,
+            caption: legacyCarousel.captions?.[slideIndex] || "",
+          })),
+        };
+      }
+
+      return {
+        type: "image",
+        src,
+        caption: project.imageCaptions?.[index] || "",
+      };
+    });
   }, [project]);
 
+  const images = useMemo(
+    () => mediaItems.map((item) => (
+      item.type === "carousel" ? item.slides?.[0]?.src : item.src
+    )).filter(Boolean),
+    [mediaItems]
+  );
+
   useEffect(() => {
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    const scrollY = window.scrollY;
+    const body = document.body;
+    const documentElement = document.documentElement;
+    const previousBodyStyles = {
+      overflow: body.style.overflow,
+      position: body.style.position,
+      top: body.style.top,
+      left: body.style.left,
+      right: body.style.right,
+      width: body.style.width,
+    };
+    const previousDocumentStyles = {
+      overflow: documentElement.style.overflow,
+      overscrollBehavior: documentElement.style.overscrollBehavior,
+    };
+
+    window.dispatchEvent(new Event('portfolio:lenis-stop'));
+
+    // No mobile, apenas `overflow: hidden` ainda permite que o gesto alcance
+    // a página. Fixar o body preserva sua posição enquanto o card recebe o scroll.
+    documentElement.style.overflow = "hidden";
+    documentElement.style.overscrollBehavior = "none";
+    body.style.overflow = "hidden";
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.left = "0";
+    body.style.right = "0";
+    body.style.width = "100%";
 
     return () => {
-      document.body.style.overflow = previousOverflow;
+      const previousScrollBehavior = documentElement.style.scrollBehavior;
+
+      // O CSS global mobile usa scroll-behavior: smooth. Desativamos apenas
+      // nesta restauração para não exibir a descida do topo até Projects.
+      documentElement.style.scrollBehavior = "auto";
+      Object.assign(body.style, previousBodyStyles);
+      Object.assign(documentElement.style, previousDocumentStyles);
+      window.scrollTo({ top: scrollY, left: 0, behavior: "auto" });
+      documentElement.style.scrollBehavior = previousScrollBehavior;
+      window.dispatchEvent(new CustomEvent('portfolio:lenis-scroll-to', {
+        detail: { top: scrollY },
+      }));
+      window.dispatchEvent(new Event('portfolio:lenis-start'));
     };
   }, []);
 
   useEffect(() => {
     setCurrentImage(0);
     setFullscreenImage(false);
+    setCurrentCarouselSlide(null);
+    fullscreenHistoryEntryRef.current = false;
   }, [project]);
+
+  useEffect(() => {
+    const handlePopState = (event) => {
+      if (fullscreenImage && !event.state?.fullscreenProjectMedia) {
+        fullscreenHistoryEntryRef.current = false;
+        setFullscreenImage(false);
+      }
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [fullscreenImage]);
 
   if (!project || !images.length) return null;
 
-  const currentCaption = project.imageCaptions?.[currentImage];
+  const currentMedia = mediaItems[currentImage];
+  const carouselSlides = currentMedia?.type === "carousel" ? currentMedia.slides || [] : [];
+  const carouselImages = carouselSlides.map((slide) => slide.src).filter(Boolean);
+  const isViewingCarousel = carouselImages.length > 0;
+  const activeCarouselSlide = currentCarouselSlide ?? 0;
+  const currentMediaSrc = isViewingCarousel
+    ? carouselImages[activeCarouselSlide]
+    : images[currentImage];
+  const currentCaption = isViewingCarousel
+    ? carouselSlides[activeCarouselSlide]?.caption
+    : currentMedia?.caption;
   const hasProjectNavigation = projects.length > 1 && onProjectChange;
   const currentProjectIndex = projects.findIndex((item) => {
     if (project.id && item.id) return item.id === project.id;
@@ -50,11 +146,52 @@ const ProjectDetailModal = ({
   const safeProjectIndex = currentProjectIndex >= 0 ? currentProjectIndex : 0;
 
   const nextImage = () => {
+    if (isViewingCarousel && activeCarouselSlide < carouselImages.length - 1) {
+      setCurrentCarouselSlide((slide) => slide + 1);
+      return;
+    }
+
     setCurrentImage((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    setCurrentCarouselSlide(null);
   };
 
   const prevImage = () => {
-    setCurrentImage((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    if (isViewingCarousel && activeCarouselSlide > 0) {
+      setCurrentCarouselSlide((slide) => slide - 1);
+      return;
+    }
+
+    const previousImage = currentImage === 0 ? images.length - 1 : currentImage - 1;
+    const previousCarouselImages = mediaItems[previousImage]?.type === "carousel"
+      ? mediaItems[previousImage].slides || []
+      : [];
+    setCurrentImage(previousImage);
+    setCurrentCarouselSlide(previousCarouselImages.length ? previousCarouselImages.length - 1 : null);
+  };
+
+  const selectMainImage = (imageIndex) => {
+    setCurrentImage(imageIndex);
+    setCurrentCarouselSlide(mediaItems[imageIndex]?.type === "carousel" ? 0 : null);
+  };
+
+  const openFullscreen = () => {
+    window.history.pushState(
+      { ...window.history.state, modal: true, fullscreenProjectMedia: true },
+      ""
+    );
+    window.dispatchEvent(new Event("portfolio:fullscreen-open"));
+    fullscreenHistoryEntryRef.current = true;
+    setFullscreenImage(true);
+  };
+
+  const closeFullscreen = () => {
+    if (fullscreenHistoryEntryRef.current) {
+      fullscreenHistoryEntryRef.current = false;
+      window.history.back();
+      return;
+    }
+
+    setFullscreenImage(false);
   };
 
   const nextProject = () => {
@@ -96,8 +233,10 @@ const ProjectDetailModal = ({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 px-4 pt-4 pb-24 md:pb-20"
-        onClick={onClose}
+        className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden overscroll-contain bg-black/80 px-4 pb-24 pt-4 backdrop-blur-md md:pb-20"
+        onClick={(event) => {
+          if (event.target === event.currentTarget) onClose();
+        }}
       >
         {projectNavigation && (
           <ProjectModalNavigation
@@ -107,11 +246,12 @@ const ProjectDetailModal = ({
           />
         )}
 
-        <ModalCard
-          initial={{ scale: 0.9, opacity: 0 }}
+        <div className="relative">
+          <ModalCard
+          initial={{ scale: 0.9, opacity: 0, y: 16 }}
           animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.9, opacity: 0 }}
-          transition={{ duration: 0.3 }}
+          exit={{ scale: 0.94, opacity: 0, y: 38 }}
+          transition={{ duration: 0.28 }}
           className="
             relative
             w-[90vw]
@@ -122,43 +262,68 @@ const ProjectDetailModal = ({
             dark:bg-slate-900
             bg-white
             rounded-[28px]
-            overflow-visible
+            overflow-y-auto
+            overscroll-contain
+            touch-pan-y
+            [-webkit-overflow-scrolling:touch]
             shadow-2xl
             flex flex-col md:flex-row
+            md:overflow-hidden
           "
           onClick={(e) => e.stopPropagation()}
         >
-          <button
-            onClick={onClose}
+            <button
+              type="button"
+            onClick={(event) => {
+              event.stopPropagation();
+              onClose();
+            }}
             aria-label="Fechar detalhes do projeto"
             className="
-              absolute top-3 right-3 md:top-0 md:-right-12 z-40
-              bg-white/90 hover:bg-white
-              border border-slate-300
-              text-slate-500 hover:text-red-500
-              p-3 rounded-xl
-              shadow-lg
+              absolute top-3 right-3 z-40 md:hidden
+              bg-black/45 backdrop-blur-md
+              border border-white/10
+              text-white
+              p-2 md:p-3 rounded-xl
+              hover:bg-black/70
               transition-all duration-300
             "
           >
-            <FaTimes />
+            <FaTimes className="text-lg" />
           </button>
 
           <ProjectImageGallery
             project={project}
             images={images}
             currentImage={currentImage}
+            currentMediaSrc={currentMediaSrc}
             currentCaption={currentCaption}
-            setCurrentImage={setCurrentImage}
+            setCurrentImage={selectMainImage}
             nextImage={nextImage}
             prevImage={prevImage}
-            onOpenFullscreen={() => setFullscreenImage(true)}
+            onOpenFullscreen={openFullscreen}
           />
 
           <ProjectInfoPanel
             project={project}
           />
-        </ModalCard>
+          </ModalCard>
+
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Fechar detalhes do projeto"
+            className="
+              absolute top-3.5 -right-3 z-40 hidden translate-x-full
+              items-center justify-center
+              rounded-xl border border-white/25 bg-slate-700/75 p-3 text-white
+              shadow-lg shadow-black/25 backdrop-blur-md
+              transition-colors duration-300 group md:flex
+            "
+          >
+            <FaTimes className="text-lg transition-colors duration-300 group-hover:text-red-400" />
+          </button>
+        </div>
 
         {projectNavigation && (
           <ProjectModalNavigation
@@ -185,11 +350,15 @@ const ProjectDetailModal = ({
           project={project}
           images={images}
           currentImage={currentImage}
+          currentMediaSrc={currentMediaSrc}
           currentCaption={currentCaption}
-          setCurrentImage={setCurrentImage}
+          carouselImages={carouselImages}
+          currentCarouselSlide={currentCarouselSlide}
+          setCurrentCarouselSlide={setCurrentCarouselSlide}
+          setCurrentImage={selectMainImage}
           nextImage={nextImage}
           prevImage={prevImage}
-          onClose={() => setFullscreenImage(false)}
+          onClose={closeFullscreen}
         />
       )}
     </>

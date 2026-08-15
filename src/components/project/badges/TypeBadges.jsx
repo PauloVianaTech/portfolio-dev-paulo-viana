@@ -1,22 +1,22 @@
-import { FaNodeJs, FaTools, FaWindowMaximize, FaVideo, FaPencilRuler, FaChartLine } from "react-icons/fa";
+import { FaBezierCurve, FaChartLine, FaLaptopCode } from "react-icons/fa";
 import { FaCartShopping, FaChartPie, FaUser, FaPalette, FaInstagram, FaRobot } from "react-icons/fa6";
-import { SiExpress } from "react-icons/si";
 import { PiCodeBold } from "react-icons/pi";
+import { Layers, LayoutTemplate, Monitor, MousePointer2, PenTool, Server } from "lucide-react";
 
 const typeIcons = {
-    "Frontend": <PiCodeBold />,
-    "Backend": <FaNodeJs />,
-    "Full Stack": <FaTools />,
+    "Frontend": <FaLaptopCode />,
+    "Backend": <Server />,
+    "Full Stack": <Layers />,
     "E-commerce": <FaCartShopping />,
-    "API": <SiExpress />,
-    "Landing Page": <FaWindowMaximize />,
+    "API": <PiCodeBold />,
+    "Landing Page": <LayoutTemplate />,
     "Dashboard": <FaChartPie />,
     "Portfolio": <FaUser />,
-    "Identidade Visual": <FaPalette />,
+    "Identidade Visual": <PenTool />,
     "Design": <FaPalette />,
-    "UI/UX": <FaPencilRuler />,
-    "UI Design": <FaPencilRuler />,
-    "Motion Design": <FaVideo />,
+    "UI/UX": <MousePointer2 />,
+    "UI Design": <Monitor />,
+    "Motion Design": <FaBezierCurve />,
     "Social Media": <FaInstagram />,
     "Trading Indicator": <FaChartLine />,
     "Trading Automation": <FaRobot />,
@@ -86,8 +86,8 @@ const TypeBadges = ({ project, limit, variant = "default" }) => {
                         className={`
                             shrink-0
                             ${isCard
-                                ? "text-[10px] [&_svg]:w-[10px] [&_svg]:h-[10px]"
-                                : "text-sm"
+                                ? "inline-flex h-[10px] w-[10px] items-center justify-center [&_svg]:!h-full [&_svg]:!w-full"
+                                : "inline-flex h-4 w-4 items-center justify-center [&_svg]:!h-full [&_svg]:!w-full"
                             }
                          `}
                     >

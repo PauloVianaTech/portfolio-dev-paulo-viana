@@ -113,7 +113,6 @@ const AdminDashboard = ({ isOpen, onClose }) => {
     if (data) setGallery(data);
     if (error) console.error('Error fetching gallery:', error);
   };
-/*
   const fetchProjects = async () => {
     const { data, error } = await supabase
       .from('projects')
@@ -122,7 +121,7 @@ const AdminDashboard = ({ isOpen, onClose }) => {
     if (data) setProjects(data);
     if (error) console.error('Error fetching projects:', error);
   };
-*/
+
   const fetchCertificates = async () => {
     const { data, error } = await supabase
       .from('certificates')

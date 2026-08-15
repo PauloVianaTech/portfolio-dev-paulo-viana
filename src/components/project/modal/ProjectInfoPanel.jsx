@@ -147,12 +147,17 @@ const ProjectInfoPanel = ({ project }) => {
             text-base sm:text-lg md:text-lg
             max-h-[144px] md:max-h-[184px]
             overflow-y-auto
+            overscroll-contain
+            touch-pan-y
+            [-webkit-overflow-scrolling:touch]
             pr-2
             mb-0
             scrollbar-thin
             scrollbar-thumb-cyan-500/30
             scrollbar-track-transparent
           "
+          onWheel={(event) => event.stopPropagation()}
+          onTouchMove={(event) => event.stopPropagation()}
         >
           {project.description}
         </p>

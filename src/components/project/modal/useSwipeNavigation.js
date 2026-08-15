@@ -1,20 +1,20 @@
-import { useState } from "react";
+import { useRef } from "react";
 
 const SWIPE_THRESHOLD = 65;
 
 const useSwipeNavigation = ({ onSwipeLeft, onSwipeRight }) => {
-  const [touchStart, setTouchStart] = useState(null);
-  const [touchEnd, setTouchEnd] = useState(null);
+  const touchStartRef = useRef(null);
 
   return {
     onTouchStart: (event) => {
-      setTouchStart(event.targetTouches[0].clientX);
+      touchStartRef.current = event.touches[0]?.clientX ?? null;
     },
-    onTouchMove: (event) => {
-      setTouchEnd(event.targetTouches[0].clientX);
-    },
-    onTouchEnd: () => {
-      if (!touchStart || !touchEnd) return;
+    onTouchEnd: (event) => {
+      const touchEnd = event.changedTouches[0]?.clientX;
+      const touchStart = touchStartRef.current;
+      touchStartRef.current = null;
+
+      if (touchStart === null || touchEnd === undefined) return;
 
       const distance = touchStart - touchEnd;
 
@@ -25,9 +25,9 @@ const useSwipeNavigation = ({ onSwipeLeft, onSwipeRight }) => {
       if (distance < -SWIPE_THRESHOLD) {
         onSwipeRight();
       }
-
-      setTouchStart(null);
-      setTouchEnd(null);
+    },
+    onTouchCancel: () => {
+      touchStartRef.current = null;
     },
   };
 };

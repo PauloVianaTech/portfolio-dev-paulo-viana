@@ -24,12 +24,6 @@ export default defineConfig({
             '@react-three/rapier',
           ],
           
-          // Spline (berat juga!)
-          'spline-vendor': [
-            '@splinetool/react-spline',
-            '@splinetool/runtime',
-          ],
-          
           // Icons & UI
           'ui-vendor': [
             'react-icons',
@@ -43,8 +37,8 @@ export default defineConfig({
         },
       },
     },
-    // Increase chunk size warning limit
-    chunkSizeWarningLimit: 1000,
+    // Bibliotecas 3D ficam isoladas em chunks assíncronos.
+    chunkSizeWarningLimit: 2500,
     
     // Optimize minification
     minify: 'terser',
@@ -63,9 +57,6 @@ export default defineConfig({
       'react-dom',
       'framer-motion',
       'three',
-    ],
-    exclude: [
-      '@splinetool/runtime', // Exclude heavy runtime
     ],
   },
 })

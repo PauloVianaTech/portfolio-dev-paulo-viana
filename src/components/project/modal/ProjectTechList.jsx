@@ -9,11 +9,16 @@ const ProjectTechList = ({ tech = [] }) => {
         flex flex-wrap gap-2
         max-h-[80px] md:max-h-[96px]
         overflow-y-auto
+        overscroll-contain
+        touch-pan-y
+        [-webkit-overflow-scrolling:touch]
         pr-2
         scrollbar-thin
         scrollbar-thumb-cyan-500/30
         scrollbar-track-transparent
       "
+      onWheel={(event) => event.stopPropagation()}
+      onTouchMove={(event) => event.stopPropagation()}
     >
       {tech.map((item, index) => (
         <span

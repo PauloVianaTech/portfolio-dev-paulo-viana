@@ -5,8 +5,10 @@ import {
   FaCss3Alt,
   FaJsSquare,
   FaFigma,
+  FaGitAlt,
   FaGithub,
   FaPython,
+  FaWordpress,
 } from "react-icons/fa";
 
 import {
@@ -15,15 +17,19 @@ import {
   SiVercel,
   SiMongodb,
   SiExpress,
+  SiElementor,
   SiPostgresql,
   SiTypescript,
   SiSupabase,
   SiVite,
   SiOpenai,
+  SiClaude,
   SiAnthropic,
   SiGooglegemini,
   SiPerplexity,
-  SiHuggingface,
+  SiOllama,
+  SiSuno,
+  SiFramer,
 } from "react-icons/si";
 
 import affinityIcon from "../assets/tech-icons/affinity.svg";
@@ -41,6 +47,9 @@ import obsStudioIcon from "../assets/tech-icons/obs-studio.svg";
 import photoshopIcon from "../assets/tech-icons/photoshop.svg";
 import premiereIcon from "../assets/tech-icons/premiere.svg";
 import profitProNelogicaIcon from "../assets/tech-icons/profit-pro-nelogica.svg";
+import cursorIcon from "simple-icons/icons/cursor.svg";
+import deepseekIcon from "simple-icons/icons/deepseek.svg";
+import kimiIcon from "simple-icons/icons/kimi.svg";
 
 const SvgTechIcon = ({ src }) => (
   <span className="inline-flex h-[1em] w-[1em] shrink-0 items-center justify-center align-[-0.125em]">
@@ -50,6 +59,13 @@ const SvgTechIcon = ({ src }) => (
       aria-hidden="true"
       className="block h-[0.95em] w-[0.95em] object-contain"
     />
+  </span>
+);
+
+// O catálogo vetorial instalado ainda não inclui as marcas de Runway e Lovable.
+const BrandMonogram = ({ label, className = "" }) => (
+  <span className={`inline-flex h-[1em] w-[1em] items-center justify-center rounded-[0.22em] border border-current text-[0.58em] font-black leading-none ${className}`}>
+    {label}
   </span>
 );
 
@@ -78,28 +94,34 @@ const developmentTechIcons = {
   Supabase: <SiSupabase className="text-base text-emerald-400" />,
   Vite: <SiVite className="text-base text-violet-400" />,
 
-  "Git & GitHub": <FaGithub className="text-base text-white" />,
+  "Git & GitHub": <FaGitAlt className="text-base text-orange-500" />,
   GitHub: <FaGithub className="text-base text-white" />,
-  Git: <FaGithub className="text-base text-white" />,
+  Git: <FaGitAlt className="text-base text-orange-500" />,
 
   Vercel: <SiVercel className="text-base text-white" />,
   Python: <FaPython className="text-base text-yellow-300" />,
+  WordPress: <FaWordpress className="text-base text-sky-300" />,
+  Elementor: <SiElementor className="text-base text-pink-400" />,
 };
 
 const AItechIcons = {
   OpenAI: <SiOpenai className="text-base text-emerald-300" />,
-  ChatGPT: <SiOpenai className="text-base text-emerald-300" />,
+  ChatGPT: <SiOpenai className="text-base text-emerald-200" />,
 
-  Claude: <SiAnthropic className="text-base text-orange-300" />,
-  Anthropic: <SiAnthropic className="text-base text-orange-300" />,
+  Claude: <SiClaude className="text-base text-orange-300" />,
+  Anthropic: <SiAnthropic className="text-base text-orange-200" />,
 
   Gemini: <SiGooglegemini className="text-base text-sky-300" />,
-  "Google Gemini": <SiGooglegemini className="text-base text-sky-300" />,
-
   Perplexity: <SiPerplexity className="text-base text-cyan-300" />,
 
-  "Hugging Face": <SiHuggingface className="text-base text-yellow-300" />,
-  HuggingFace: <SiHuggingface className="text-base text-yellow-300" />,
+  Ollama: <SiOllama className="text-base text-slate-100" />,
+  DeepSeek: <SvgTechIcon src={deepseekIcon} />,
+  Kimi: <SvgTechIcon src={kimiIcon} />,
+  Suno: <SiSuno className="text-base text-rose-300" />,
+  Runway: <BrandMonogram label="R" className="text-pink-300" />,
+  Cursor: <SvgTechIcon src={cursorIcon} />,
+  Lovable: <BrandMonogram label="L" className="text-fuchsia-300" />,
+  Framer: <SiFramer className="text-base text-pink-300" />,
 };
 
 const designTechIcons = {

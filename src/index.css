@@ -1,5 +1,5 @@
-/* Import Google Fonts PERTAMA - sebelum Tailwind */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+﻿/* Import Google Fonts PERTAMA - sebelum Tailwind */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Poppins:wght@500;600;700;800;900&family=Space+Grotesk:wght@600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cascadia+Code&display=swap');
 
 @tailwind base;
@@ -7,11 +7,6 @@
 @tailwind utilities;
 
 /* Font kustom Anda */
-@font-face {
-    font-family: 'Moderniz';
-    src: url(./assets/fonts/Moderniz.otf) format('opentype');
-}
-
 @font-face {
     font-family: 'Bauhaus93';
     src: url(./assets/fonts/BAUHS93.ttf) format('truetype');
@@ -39,6 +34,33 @@
     --accent: #00ffdc; /* Original Cyan Accent */
   }
 
+  html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  html.lenis {
+    scroll-behavior: auto;
+  }
+
+  html.lenis [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  @media (max-width: 1023px) {
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 72px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
   body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
@@ -51,6 +73,77 @@
   .font-cascadia {
     font-family: 'Cascadia Code', monospace;
   }
+}
+
+/* Portal visual da transição Stacks → Projetos: usa somente gradientes CSS. */
+.projects-transition-portal {
+  overflow: hidden;
+  border: 1px solid rgba(64, 242, 255, 0.62);
+  border-radius: 0.875rem;
+  background-color: rgba(3, 16, 34, 0.8);
+  background-image:
+    linear-gradient(rgba(64, 242, 255, 0.13) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(64, 242, 255, 0.13) 1px, transparent 1px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.022) 0 1px, transparent 1px 4px),
+    radial-gradient(circle at 50% 50%, rgba(64, 242, 255, 0.17), transparent 64%);
+  background-size: 22px 22px, 22px 22px, 100% 4px, 100% 100%;
+  box-shadow:
+    0 0 24px rgba(64, 242, 255, 0.24),
+    inset 0 0 28px rgba(64, 242, 255, 0.16),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+  will-change: width, height, opacity;
+}
+
+.projects-transition-portal::before {
+  position: absolute;
+  content: "";
+  pointer-events: none;
+}
+
+.projects-transition-frame {
+  box-sizing: border-box;
+  border: 1px solid rgba(64, 242, 255, 0.4);
+  border-radius: 0.875rem;
+  box-shadow: 0 0 12px rgba(64, 242, 255, 0.16), inset 0 0 10px rgba(255, 255, 255, 0.04);
+  will-change: width, height, opacity;
+}
+
+.projects-transition-frame--2 {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.projects-transition-frame--3 {
+  border-color: rgba(64, 242, 255, 0.3);
+  box-shadow: 0 0 18px rgba(64, 242, 255, 0.21);
+}
+
+.projects-transition-lens {
+  z-index: 1;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(64, 242, 255, calc(0.11 + var(--lens-strength, 0) * 0.12)), transparent 28%),
+    radial-gradient(ellipse at center, transparent 30%, rgba(1, 10, 27, calc(0.18 + var(--lens-strength, 0) * 0.25)) 78%, rgba(1, 7, 20, calc(0.3 + var(--lens-strength, 0) * 0.35)) 100%);
+  will-change: opacity;
+}
+
+.projects-transition-rectangle {
+  aspect-ratio: 16 / 9;
+  border: 1px solid rgba(255, 255, 255, 0.44);
+  border-radius: 0.55rem;
+  background: #c02424;
+  box-shadow: 0 10px 22px rgba(78, 7, 7, 0.35), 0 0 14px rgba(255, 84, 84, 0.24);
+  transform-origin: center;
+  will-change: transform, opacity, filter;
+}
+
+.projects-transition-portal::before {
+  inset: -2px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: inherit;
+  box-shadow: 0 0 18px rgba(64, 242, 255, 0.42);
+}
+
+.dark .projects-transition-portal {
+  background-color: rgba(2, 13, 30, 0.86);
 }
 
 /* --- Gaya untuk Latar Belakang Preloader --- */
@@ -124,6 +217,37 @@
   animation: primaryFlow 4s ease infinite;
 }
 
+@keyframes stackLinkFlow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+.stack-link-flow {
+  animation: stackLinkFlow 2.8s linear infinite;
+}
+
+@keyframes stackIconFloat {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, calc(var(--stack-float-distance) * -1), 0);
+  }
+}
+
+.stack-icon-float {
+  animation: stackIconFloat var(--stack-float-duration) ease-in-out var(--stack-float-delay) infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stack-icon-float {
+    animation: none;
+  }
+}
+
   @keyframes holographicFlow {
   0% {
     background-position: 0% 50%;
@@ -147,3 +271,4 @@
 
 
 }
+

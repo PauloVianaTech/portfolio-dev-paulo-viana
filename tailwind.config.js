@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+﻿/** @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./index.html",
@@ -8,7 +8,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'moderniz': ['Moderniz', 'sans-serif'],
+        'display': ['Archivo Black', 'Space Grotesk', 'Poppins', 'sans-serif'],
         'bauhaus': ['Bauhaus93', 'sans-serif'],
       },
       animation: {
@@ -30,3 +30,4 @@ export default {
   },
   plugins: [],
 }
+

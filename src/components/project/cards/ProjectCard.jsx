@@ -7,13 +7,19 @@ import { techIcons } from "../config/techIcons";
 ////////////////////////////////////////
 // Card inicial
 ////////////////////////////////////////
-const ProjectCard = ({ project, onClick }) => {
+const ProjectCard = ({ project, onClick, isMobileFocused = null }) => {
+    const mobileFocusClass = isMobileFocused === null
+        ? ""
+        : isMobileFocused
+            ? "max-md:scale-[1.01] max-md:ring-1 max-md:ring-cyan-300/40"
+            : "";
+
     return (
         <button
             type="button"
             onClick={() => onClick(project)}
-            className="
-                group relative h-72 sm:h-80
+            className={`
+                group relative h-64 sm:h-72
                 w-full text-left
                 rounded-2xl overflow-hidden
                 border border-white/10 hover:border-cyan-300/60
@@ -22,7 +28,8 @@ const ProjectCard = ({ project, onClick }) => {
                 transition-all duration-300
                 hover:-translate-y-1.5 hover:scale-[1.015]
                 cursor-pointer
-            "
+                ${mobileFocusClass}
+            `}
         >
             <img
                 src={project.image}
