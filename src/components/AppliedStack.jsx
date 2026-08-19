@@ -352,21 +352,23 @@ function AppliedStack() {
       });
     });
 
-    // Parallax exclusivo da chegada em Stacks. Ele atua no título e termina
-    // antes do pin; o track horizontal não recebe nenhum transform adicional.
+    // O parallax do título termina antes do pin de Stacks. No desktop a
+    // trajetória é menor para preservar a distância do header.
     const entryParallaxContext = gsap.context(() => {
       if (!stackIntroParallaxRef.current) return;
 
+      const isDesktop = window.innerWidth >= 1024;
+
       gsap.fromTo(
         stackIntroParallaxRef.current,
-        { y: 72 },
+        { y: isDesktop ? 36 : 72 },
         {
           y: 0,
           ease: 'none',
           scrollTrigger: {
             trigger: section,
-            start: 'top 82%',
-            end: 'top 22%',
+            start: isDesktop ? 'top 86%' : 'top 82%',
+            end: isDesktop ? 'top 38%' : 'top 22%',
             scrub: 0.7,
             invalidateOnRefresh: true,
           },

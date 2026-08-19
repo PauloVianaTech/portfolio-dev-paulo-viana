@@ -88,7 +88,7 @@ export const projectsData = [
       "E-commerce front-end desenvolvido com foco em responsividade, experiencia do usuario e interface moderna.E-commerce front-end desenvolvido com foco em responsividade, experiencia do usuario e interface moderna.",
     types: ["Frontend", "E-commerce", "Portfolio", "CRM", "Motion Design", "UI Design", "Mobile App", "Data Visualization"],
     context: "Study Project",
-    tech: ["ChatGPT", "Anthropic", "Gemini", "Canva", "Affinity", "JavaScript", "Next.js", "HTML5", "CSS3", "MongoDB", "Git & GitHub", "Vercel"],
+    tech: ["ChatGPT", "Python", "NestJS",  "Anthropic", "Gemini", "Canva", "Affinity", "JavaScript", "Next.js", "HTML5", "CSS3", "MongoDB", "Git & GitHub", "Vercel"],
     tags: ["Frontend", "Responsive", "UI/UX", "E-commerce"],
     role: "Frontend Developer",
     company: "Projeto academico",

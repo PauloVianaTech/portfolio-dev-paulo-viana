@@ -2,8 +2,9 @@ import ContextBadge from "../badges/ContextBadge";
 import TypeBadges from "../badges/TypeBadges";
 import ProjectActionButtons from "./ProjectActionButtons";
 import ProjectTechList from "./ProjectTechList";
+import { FaCheck, FaShareAlt } from "react-icons/fa";
 
-const ProjectInfoPanel = ({ project }) => {
+const ProjectInfoPanel = ({ project, onShare, isLinkCopied }) => {
   return (
     <div
       className="
@@ -126,19 +127,37 @@ const ProjectInfoPanel = ({ project }) => {
           pt-[calc(var(--folder-top)+16px)]
         "
       >
-        <h2
-          className="
-            text-2xl sm:text-3xl md:text-[2rem]
-            font-black tracking-tight
-            dark:text-white text-slate-900
-            mt-0
-            mb-2
-            leading-tight
-            shrink-0
-          "
-        >
-          {project.title}
-        </h2>
+        <div className="mb-2 flex items-start justify-between gap-3">
+          <h2
+            className="
+              text-2xl sm:text-3xl md:text-[2rem]
+              font-black tracking-tight
+              dark:text-white text-slate-900
+              mt-0
+              leading-tight
+              shrink-0
+            "
+          >
+            {project.title}
+          </h2>
+
+          <div className="relative shrink-0">
+            <button
+              type="button"
+              onClick={onShare}
+              aria-label="Copiar link do projeto"
+              className="group inline-flex h-11 w-11 items-center justify-center bg-transparent text-[#FFFFFF] transition-all duration-300 hover:text-cyan-200"
+            >
+              {isLinkCopied ? <FaCheck className="text-lg" /> : <FaShareAlt className="text-lg transition-transform duration-300 group-hover:scale-110" />}
+            </button>
+
+            {isLinkCopied && (
+              <span className="absolute right-0 top-full mt-2 whitespace-nowrap rounded-md border border-cyan-200/20 bg-slate-950/95 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-cyan-100 shadow-lg">
+                Link copiado
+              </span>
+            )}
+          </div>
+        </div>
 
         <p
           className="

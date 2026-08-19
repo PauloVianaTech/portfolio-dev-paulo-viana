@@ -1,14 +1,5 @@
 ﻿import { motion } from 'framer-motion';
-import {
-  FaEnvelope,
-  FaGithub,
-  FaInstagram,
-  FaLinkedin,
-  FaPaperPlane,
-  FaUser,
-  FaYoutube,
-} from 'react-icons/fa';
-import { useState } from 'react';
+import { FaEnvelope, FaGithub, FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
 
 const MotionDiv = motion.div;
 const MotionAnchor = motion.a;
@@ -16,23 +7,6 @@ const MotionAnchor = motion.a;
 const contactEmail = 'paulovianadev@gmail.com';
 
 const Contact = () => {
-  const [contactForm, setContactForm] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
-
-  const handleContactSubmit = (event) => {
-    event.preventDefault();
-
-    const subject = encodeURIComponent(`Contato pelo portfolio - ${contactForm.name}`);
-    const body = encodeURIComponent(
-      `Nome: ${contactForm.name}\nEmail: ${contactForm.email}\n\nMensagem:\n${contactForm.message}`
-    );
-
-    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
-  };
-
   const socialLinks = [
     {
       name: 'GitHub',
@@ -83,85 +57,7 @@ const Contact = () => {
           </p>
         </MotionDiv>
 
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-16 items-start">
-          <MotionDiv
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="relative group"
-          >
-            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-600 to-emerald-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000 hidden dark:block" />
-            <div className="relative dark:bg-slate-900/80 bg-white backdrop-blur-xl rounded-3xl p-8 border dark:border-slate-700/50 border-slate-100 dark:shadow-none shadow-xl">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 dark:bg-gradient-to-r dark:from-cyan-600 dark:to-emerald-600 bg-cyan-600 rounded-full">
-                  <FaPaperPlane className="text-white text-xl" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold dark:text-white text-slate-900">
-                    Envie uma mensagem
-                  </h3>
-                  <p className="dark:text-slate-400 text-slate-600">
-                    O formulário abre seu aplicativo de e-mail com a mensagem pronta.
-                  </p>
-                </div>
-              </div>
-
-              <form onSubmit={handleContactSubmit} className="space-y-6">
-                <div className="group">
-                  <div className="relative">
-                    <FaUser className="absolute left-4 top-1/2 -translate-y-1/2 dark:text-slate-400 text-slate-400 group-focus-within:text-cyan-600 dark:group-focus-within:text-cyan-400 transition-colors duration-300" />
-                    <input
-                      type="text"
-                      placeholder="Seu nome"
-                      value={contactForm.name}
-                      onChange={(event) =>
-                        setContactForm((prev) => ({ ...prev, name: event.target.value }))
-                      }
-                      className="w-full pl-12 pr-4 py-4 dark:bg-slate-800/50 bg-slate-50 border dark:border-slate-600/50 border-slate-200 rounded-xl dark:text-white text-slate-800 dark:placeholder-slate-400 placeholder-slate-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 dark:focus:ring-cyan-400/20 transition-all duration-300"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div className="group">
-                  <div className="relative">
-                    <FaEnvelope className="absolute left-4 top-1/2 -translate-y-1/2 dark:text-slate-400 text-slate-500 group-focus-within:text-cyan-400 transition-colors duration-300" />
-                    <input
-                      type="email"
-                      placeholder="Seu email"
-                      value={contactForm.email}
-                      onChange={(event) =>
-                        setContactForm((prev) => ({ ...prev, email: event.target.value }))
-                      }
-                      className="w-full pl-12 pr-4 py-4 dark:bg-slate-800/50 bg-slate-50 border dark:border-slate-600/50 border-slate-200 rounded-xl dark:text-white text-slate-900 dark:placeholder-slate-400 placeholder-slate-500 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 transition-all duration-300"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <textarea
-                  placeholder="Conte um pouco sobre o projeto, vaga ou parceria..."
-                  rows="5"
-                  value={contactForm.message}
-                  onChange={(event) =>
-                    setContactForm((prev) => ({ ...prev, message: event.target.value }))
-                  }
-                  className="w-full px-4 py-4 dark:bg-slate-800/50 bg-slate-50 border dark:border-slate-600/50 border-slate-200 rounded-xl dark:text-white text-slate-900 dark:placeholder-slate-400 placeholder-slate-500 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 transition-all duration-300 resize-none"
-                  required
-                />
-
-                <button
-                  type="submit"
-                  className="w-full dark:bg-gradient-to-r dark:from-cyan-600 dark:to-emerald-600 dark:hover:from-cyan-500 dark:hover:to-emerald-500 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-cyan-500/25"
-                >
-                  <FaPaperPlane />
-                  <span>Preparar e-mail</span>
-                </button>
-              </form>
-            </div>
-          </MotionDiv>
-
+        <div className="mx-auto max-w-xl">
           <MotionDiv
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -169,7 +65,7 @@ const Contact = () => {
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="relative group"
           >
-            <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000 hidden dark:block" />
+            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-600 to-emerald-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000 hidden dark:block" />
             <div className="relative dark:bg-slate-900/80 bg-white backdrop-blur-xl rounded-3xl p-8 border dark:border-slate-700/50 border-slate-100 shadow-lg dark:shadow-none">
               <h3 id="onde-me-encontrar" className="text-2xl font-bold dark:text-white text-slate-900 mb-6 text-center">
                 Onde me encontrar

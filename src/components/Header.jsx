@@ -1,6 +1,5 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
-import bangzenLogo from '../assets/images/BGZENBGIJObulat.png';
 import { useNavbar } from '../contexts/NavbarContext';
 import { useTheme } from '../contexts/ThemeContext';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -149,7 +148,7 @@ const Header = () => {
                 <div className="w-full flex items-center justify-between md:hidden">
                   {/* Mobile: Brand Logo & Text (Left) */}
                   <a href="/" onClick={(e) => handleNavClick(e, '#home')} className="flex items-center gap-3">
-                    <img src={bangzenLogo} alt="Bangzen Logo" className="h-12 w-12 flex-shrink-0" />
+                    <img src="/logo-paulo-viana.svg" alt="Logo Paulo Viana" className="h-10 w-11 flex-shrink-0 object-contain" />
                     <div>
                       <h1 className="font-display text-sm font-black uppercase tracking-[0.16em] dark:text-[#00ffdc] text-slate-800 whitespace-nowrap">Paulo Viana</h1>
                       <p className="font-display text-[9px] font-black uppercase tracking-[0.12em] dark:text-[#00ffdc] text-slate-600" style={{ textShadow: 'none' }}>
@@ -177,7 +176,7 @@ const Header = () => {
                     onClick={(e) => handleNavClick(e, '#home')}
                     className="justify-self-center flex items-center gap-3"
                   >
-                    {/*{<img src={bangzenLogo} alt="Bangzen Logo" className="h-12 w-12" />} LOGO AUTOR  */}
+                    <img src="/logo-paulo-viana.svg" alt="Logo Paulo Viana" className="h-9 w-10 flex-shrink-0 object-contain" />
                     <div className="block">
                       <h1 className="font-display text-base font-black uppercase tracking-[0.18em] dark:text-[#00ffdc] text-slate-800">Paulo Viana</h1>
                       <p className="font-display text-[10px] font-black uppercase tracking-[0.16em] dark:text-[#00ffdc] text-slate-600" style={{ textShadow: 'none' }}>

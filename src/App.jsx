@@ -119,11 +119,11 @@ function App() {
 
         {isHomeRoute && (
           <a
-            href="#onde-me-encontrar"
-            aria-label="Ir para Onde me encontrar"
-            className="fixed bottom-[calc(env(safe-area-inset-bottom)+2.75rem)] right-5 z-40 inline-flex h-14 w-14 items-center justify-center rounded-full border border-cyan-300/35 bg-[#061a38]/90 text-cyan-50 shadow-[0_8px_24px_rgba(0,0,0,0.28)] backdrop-blur-md transition-transform duration-300 active:scale-95 md:hidden"
+            href="#contact"
+            aria-label="Ir para Entre em contato"
+            className="group fixed bottom-[calc(env(safe-area-inset-bottom)+2.75rem)] right-5 z-40 inline-flex h-14 w-14 items-center justify-center rounded-full border border-cyan-300/35 bg-[#061a38]/90 text-cyan-50 shadow-[0_8px_24px_rgba(0,0,0,0.28)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-cyan-100 hover:bg-cyan-400/20 hover:shadow-[0_0_26px_rgba(34,211,238,0.58)] active:scale-95 md:bottom-8 md:right-8 md:h-16 md:w-16 md:border-cyan-200/60 md:bg-[#082451]/95 md:shadow-[0_0_22px_rgba(34,211,238,0.3)] md:hover:scale-110"
           >
-            <MessageCircle className="h-6 w-6 animate-pulse" />
+            <MessageCircle className="h-6 w-6 animate-pulse transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 md:h-7 md:w-7" />
           </a>
         )}
 

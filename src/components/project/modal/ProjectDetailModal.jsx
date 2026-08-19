@@ -20,7 +20,9 @@ const ProjectDetailModal = ({
   const [currentImage, setCurrentImage] = useState(0);
   const [fullscreenImage, setFullscreenImage] = useState(false);
   const [currentCarouselSlide, setCurrentCarouselSlide] = useState(null);
+  const [isLinkCopied, setIsLinkCopied] = useState(false);
   const fullscreenHistoryEntryRef = useRef(false);
+  const copyFeedbackTimerRef = useRef(null);
 
   const mediaItems = useMemo(() => {
     if (!project) return [];
@@ -110,8 +112,13 @@ const ProjectDetailModal = ({
     setCurrentImage(0);
     setFullscreenImage(false);
     setCurrentCarouselSlide(null);
+    setIsLinkCopied(false);
     fullscreenHistoryEntryRef.current = false;
   }, [project]);
+
+  useEffect(() => () => {
+    window.clearTimeout(copyFeedbackTimerRef.current);
+  }, []);
 
   useEffect(() => {
     const handlePopState = (event) => {
@@ -213,6 +220,34 @@ const ProjectDetailModal = ({
     onProjectChange(projects[index]);
   };
 
+  const copyProjectLink = async () => {
+    const projectUrl = new URL(`/projetos/${project.id}`, window.location.origin).href;
+
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(projectUrl);
+      } else {
+        const temporaryInput = document.createElement("textarea");
+        temporaryInput.value = projectUrl;
+        temporaryInput.setAttribute("readonly", "");
+        temporaryInput.style.position = "fixed";
+        temporaryInput.style.opacity = "0";
+        document.body.appendChild(temporaryInput);
+        temporaryInput.select();
+        document.execCommand("copy");
+        temporaryInput.remove();
+      }
+
+      setIsLinkCopied(true);
+      window.clearTimeout(copyFeedbackTimerRef.current);
+      copyFeedbackTimerRef.current = window.setTimeout(() => {
+        setIsLinkCopied(false);
+      }, 1800);
+    } catch (error) {
+      console.error("Não foi possível copiar o link do projeto.", error);
+    }
+  };
+
   const projectNavigation = hasProjectNavigation
     ? {
         current: safeProjectIndex + 1,
@@ -306,6 +341,8 @@ const ProjectDetailModal = ({
 
           <ProjectInfoPanel
             project={project}
+            isLinkCopied={isLinkCopied}
+            onShare={copyProjectLink}
           />
           </ModalCard>
 

@@ -7,7 +7,6 @@ import {
   FaFigma,
   FaGitAlt,
   FaGithub,
-  FaPython,
   FaWordpress,
 } from "react-icons/fa";
 
@@ -30,6 +29,7 @@ import {
   SiOllama,
   SiSuno,
   SiFramer,
+  SiNestjs,
 } from "react-icons/si";
 
 import affinityIcon from "../assets/tech-icons/affinity.svg";
@@ -50,6 +50,7 @@ import profitProNelogicaIcon from "../assets/tech-icons/profit-pro-nelogica.svg"
 import cursorIcon from "simple-icons/icons/cursor.svg";
 import deepseekIcon from "simple-icons/icons/deepseek.svg";
 import kimiIcon from "simple-icons/icons/kimi.svg";
+import pythonIcon from "simple-icons/icons/python.svg";
 
 const SvgTechIcon = ({ src }) => (
   <span className="inline-flex h-[1em] w-[1em] shrink-0 items-center justify-center align-[-0.125em]">
@@ -62,6 +63,18 @@ const SvgTechIcon = ({ src }) => (
   </span>
 );
 
+const GradientTechIcon = ({ src, gradient }) => (
+  <span
+    aria-hidden="true"
+    className="inline-block h-[0.95em] w-[0.95em] shrink-0 align-[-0.125em]"
+    style={{
+      background: gradient,
+      WebkitMask: `url(${src}) center / contain no-repeat`,
+      mask: `url(${src}) center / contain no-repeat`,
+    }}
+  />
+);
+
 // O catálogo vetorial instalado ainda não inclui as marcas de Runway e Lovable.
 const BrandMonogram = ({ label, className = "" }) => (
   <span className={`inline-flex h-[1em] w-[1em] items-center justify-center rounded-[0.22em] border border-current text-[0.58em] font-black leading-none ${className}`}>
@@ -70,46 +83,48 @@ const BrandMonogram = ({ label, className = "" }) => (
 );
 
 const developmentTechIcons = {
-  HTML5: <FaHtml5 className="text-base text-orange-500" />,
-  HTML: <FaHtml5 className="text-base text-orange-500" />,
+  HTML5: <FaHtml5 className="text-base text-[#E34F26]" />,
+  HTML: <FaHtml5 className="text-base text-[#E34F26]" />,
 
-  CSS3: <FaCss3Alt className="text-base text-blue-500" />,
-  CSS: <FaCss3Alt className="text-base text-blue-500" />,
+  CSS3: <FaCss3Alt className="text-base text-[#1572B6]" />,
+  CSS: <FaCss3Alt className="text-base text-[#1572B6]" />,
 
-  JavaScript: <FaJsSquare className="text-base text-yellow-400" />,
-  TypeScript: <SiTypescript className="text-base text-blue-400" />,
+  JavaScript: <FaJsSquare className="text-base text-[#F7DF1E]" />,
+  TypeScript: <SiTypescript className="text-base text-[#3178C6]" />,
 
-  React: <FaReact className="text-base text-cyan-400" />,
+  React: <FaReact className="text-base text-[#61DAFB]" />,
   "Next.js": <SiNextdotjs className="text-base text-white" />,
 
-  TailwindCSS: <SiTailwindcss className="text-base text-cyan-300" />,
-  "Tailwind CSS": <SiTailwindcss className="text-base text-cyan-300" />,
+  TailwindCSS: <SiTailwindcss className="text-base text-[#06B6D4]" />,
+  "Tailwind CSS": <SiTailwindcss className="text-base text-[#06B6D4]" />,
 
-  "Node.js": <FaNodeJs className="text-base text-green-500" />,
-  Node: <FaNodeJs className="text-base text-green-500" />,
+  "Node.js": <FaNodeJs className="text-base text-[#5FA04E]" />,
+  Node: <FaNodeJs className="text-base text-[#5FA04E]" />,
+  NestJS: <SiNestjs className="text-base text-[#E0234E]" />,
+  "Nest.js": <SiNestjs className="text-base text-[#E0234E]" />,
 
   Express: <SiExpress className="text-base text-gray-300" />,
-  MongoDB: <SiMongodb className="text-base text-green-400" />,
-  PostgreSQL: <SiPostgresql className="text-base text-sky-400" />,
-  Supabase: <SiSupabase className="text-base text-emerald-400" />,
-  Vite: <SiVite className="text-base text-violet-400" />,
+  MongoDB: <SiMongodb className="text-base text-[#47A248]" />,
+  PostgreSQL: <SiPostgresql className="text-base text-[#4169E1]" />,
+  Supabase: <SiSupabase className="text-base text-[#3FCF8E]" />,
+  Vite: <SiVite className="text-base text-[#646CFF]" />,
 
-  "Git & GitHub": <FaGitAlt className="text-base text-orange-500" />,
-  GitHub: <FaGithub className="text-base text-white" />,
-  Git: <FaGitAlt className="text-base text-orange-500" />,
+  "Git & GitHub": <FaGitAlt className="text-base text-[#F05032]" />,
+  GitHub: <FaGithub className="text-base text-[#181717] dark:text-[#F0F6FC]" />,
+  Git: <FaGitAlt className="text-base text-[#F05032]" />,
 
-  Vercel: <SiVercel className="text-base text-white" />,
-  Python: <FaPython className="text-base text-yellow-300" />,
-  WordPress: <FaWordpress className="text-base text-sky-300" />,
-  Elementor: <SiElementor className="text-base text-pink-400" />,
+  Vercel: <SiVercel className="text-base text-[#181717] dark:text-white" />,
+  Python: <GradientTechIcon src={pythonIcon} gradient="linear-gradient(135deg, #3776AB 0 49%, #FFD43B 51% 100%)" />,
+  WordPress: <FaWordpress className="text-base text-[#21759B]" />,
+  Elementor: <SiElementor className="text-base text-[#92003B]" />,
 };
 
 const AItechIcons = {
-  OpenAI: <SiOpenai className="text-base text-emerald-300" />,
-  ChatGPT: <SiOpenai className="text-base text-emerald-200" />,
+  OpenAI: <SiOpenai className="text-base text-[#181717] dark:text-white" />,
+  ChatGPT: <SiOpenai className="text-base text-[#181717] dark:text-white" />,
 
-  Claude: <SiClaude className="text-base text-orange-300" />,
-  Anthropic: <SiAnthropic className="text-base text-orange-200" />,
+  Claude: <SiClaude className="text-base text-[#D97757]" />,
+  Anthropic: <SiAnthropic className="text-base text-[#181717] dark:text-white" />,
 
   Gemini: <SiGooglegemini className="text-base text-sky-300" />,
   Perplexity: <SiPerplexity className="text-base text-cyan-300" />,
@@ -121,7 +136,7 @@ const AItechIcons = {
   Runway: <BrandMonogram label="R" className="text-pink-300" />,
   Cursor: <SvgTechIcon src={cursorIcon} />,
   Lovable: <BrandMonogram label="L" className="text-fuchsia-300" />,
-  Framer: <SiFramer className="text-base text-pink-300" />,
+  Framer: <SiFramer className="text-base text-[#0055FF]" />,
 };
 
 const designTechIcons = {

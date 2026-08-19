@@ -13,6 +13,7 @@ import ProjectSection from '../components/ProjectSection';
 import Contact from '../components/Contact';
 import AppliedStack from '../components/AppliedStack';
 import ProjectsSpatialIntro from '../components/ProjectsSpatialIntro';
+import AboutPhotoGallery from '../components/AboutPhotoGallery';
 import { useTheme } from '../contexts/ThemeContext';
 
 const MotionDiv = motion.div;
@@ -153,7 +154,7 @@ const Home = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.3 }}
                         transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-                        className="dark:text-white text-slate-800 text-center md:text-left px-4 md:px-8 transition-all duration-700 md:w-2/3"
+                        className="dark:text-white text-slate-800 text-center md:text-left px-4 md:px-8 transition-all duration-700 md:w-[58%]"
                     >                        
                         <h3 className="text-4xl font-bold dark:text-white text-slate-900 my-2 font-display" style={{ textShadow: theme === 'dark' ? "2px 2px 0 #000754, 4px 4px 0 #4079ff, 0 4px 12px #40ffaa, 0 1px 0 #00ffdc" : "none" }}>Paulo Viana</h3>
                         <p className="dark:text-white/80 text-slate-600 leading-relaxed mt-4 font-cascadia text-justify">
@@ -171,6 +172,7 @@ const Home = () => {
                             </ButtonMovingBorder>
                         </div>
                     </MotionDiv>
+                    <AboutPhotoGallery />
                 </div>
                 </div>
             </section>
@@ -198,6 +200,7 @@ const Home = () => {
                 <div className="text-sm">© {new Date().getFullYear()} Paulo Camilo da Silva Viana. Todos os direitos reservados.</div>
                 <div className="text-xs mt-2">Desenvolvido com React, Tailwind CSS e Framer Motion.</div>
             </footer>
+
         </MotionDiv>
     );
 };
