@@ -7,27 +7,27 @@ const MotionAnchor = motion.a;
 const contactEmail = 'paulovianadev@gmail.com';
 
 const Contact = () => {
-  const socialLinks = [
-    {
-      name: 'GitHub',
-      icon: <FaGithub />,
-      url: 'https://github.com/PauloVianaTech',
-      color: 'from-gray-700 to-gray-900',
-      note: 'Veja meus repositórios',
-    },
+  const socialLinks = [    
     {
       name: 'LinkedIn',
       icon: <FaLinkedin />,
       url: 'https://www.linkedin.com/in/paulo-camilo-viana',
       color: 'from-sky-600 to-blue-800',
       note: 'Conecte-se comigo',
-    },
+    },    
     {
       name: 'Instagram',
       icon: <FaInstagram />,
       url: 'https://www.instagram.com/paulovianatech',
       color: 'from-pink-500 to-purple-700',
       note: 'Acompanhe meu trabalho',
+    },
+    {
+      name: 'GitHub',
+      icon: <FaGithub />,
+      url: 'https://github.com/PauloVianaTech',
+      color: 'from-gray-700 to-gray-900',
+      note: 'Veja meus repositórios',
     },
   ];
 

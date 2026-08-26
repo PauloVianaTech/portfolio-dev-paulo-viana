@@ -10,7 +10,7 @@ import * as THREE from 'three';
 // 🧩 Ganti import glb menjadi path dari public/
 const cardGLB = '/models/card.glb';
 // 🧩 Tetap bisa pakai png dari src
-import lanyard from '../../assets/Lanyard/lanyard.png';
+import lanyard from '../../assets/Lanyard/lanyard.webp';
 import cardFront from '../../assets/Lanyard/card-front.webp';
 
 extend({ MeshLineGeometry, MeshLineMaterial });

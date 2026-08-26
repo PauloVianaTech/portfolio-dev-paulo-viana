@@ -62,5 +62,6 @@ coverage
 # Temporary
 tmp/
 temp/
+.tmp-priyanshu-portfolio/
 *.tmp
 *.bak

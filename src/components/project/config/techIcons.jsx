@@ -7,6 +7,7 @@ import {
   FaFigma,
   FaGitAlt,
   FaGithub,
+  FaPython,
   FaWordpress,
 } from "react-icons/fa";
 
@@ -50,7 +51,6 @@ import profitProNelogicaIcon from "../assets/tech-icons/profit-pro-nelogica.svg"
 import cursorIcon from "simple-icons/icons/cursor.svg";
 import deepseekIcon from "simple-icons/icons/deepseek.svg";
 import kimiIcon from "simple-icons/icons/kimi.svg";
-import pythonIcon from "simple-icons/icons/python.svg";
 
 const SvgTechIcon = ({ src }) => (
   <span className="inline-flex h-[1em] w-[1em] shrink-0 items-center justify-center align-[-0.125em]">
@@ -63,16 +63,15 @@ const SvgTechIcon = ({ src }) => (
   </span>
 );
 
-const GradientTechIcon = ({ src, gradient }) => (
-  <span
-    aria-hidden="true"
-    className="inline-block h-[0.95em] w-[0.95em] shrink-0 align-[-0.125em]"
-    style={{
-      background: gradient,
-      WebkitMask: `url(${src}) center / contain no-repeat`,
-      mask: `url(${src}) center / contain no-repeat`,
-    }}
-  />
+// Duas cópias recortadas preservam as cores azul/amarela do símbolo do Python
+// sem depender de CSS mask externo, que pode falhar em alguns navegadores.
+const PythonIcon = () => (
+  <span className="relative inline-block h-[1em] w-[1em] shrink-0 overflow-hidden align-[-0.125em]" aria-hidden="true">
+    <FaPython className="absolute inset-0 h-full w-full text-[#3776AB]" />
+    <span className="absolute inset-0 overflow-hidden" style={{ clipPath: "polygon(42% 0, 100% 0, 100% 100%, 58% 100%)" }}>
+      <FaPython className="absolute inset-0 h-full w-full text-[#FFD43B]" />
+    </span>
+  </span>
 );
 
 // O catálogo vetorial instalado ainda não inclui as marcas de Runway e Lovable.
@@ -114,7 +113,7 @@ const developmentTechIcons = {
   Git: <FaGitAlt className="text-base text-[#F05032]" />,
 
   Vercel: <SiVercel className="text-base text-[#181717] dark:text-white" />,
-  Python: <GradientTechIcon src={pythonIcon} gradient="linear-gradient(135deg, #3776AB 0 49%, #FFD43B 51% 100%)" />,
+  Python: <PythonIcon />,
   WordPress: <FaWordpress className="text-base text-[#21759B]" />,
   Elementor: <SiElementor className="text-base text-[#92003B]" />,
 };
@@ -122,6 +121,8 @@ const developmentTechIcons = {
 const AItechIcons = {
   OpenAI: <SiOpenai className="text-base text-[#181717] dark:text-white" />,
   ChatGPT: <SiOpenai className="text-base text-[#181717] dark:text-white" />,
+  Codex: <SiOpenai className="text-base text-[#181717] dark:text-white" />,
+  "OpenAI Codex": <SiOpenai className="text-base text-[#181717] dark:text-white" />,
 
   Claude: <SiClaude className="text-base text-[#D97757]" />,
   Anthropic: <SiAnthropic className="text-base text-[#181717] dark:text-white" />,
